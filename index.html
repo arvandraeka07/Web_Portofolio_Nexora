@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B1020" id="themeColor" />
+  <meta
+    name="description"
+    content="Portofolio Arvandra Eka Pratama — Web Developer & UI/UX Enthusiast. Kenalan, lihat hobi, project, dan hubungi saya."
+  />
+  <meta name="author" content="Arvandra Eka Pratama" />
+  <title>Arvandra Eka Pratama — Web Developer & UI/UX Enthusiast</title>
+
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("arvandra-theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (error) {
+        /* storage unavailable */
+      }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400..700&family=VT323&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten utama</a>
+
+  <!-- ===== Sky / world decoration ===== -->
+  <div class="fx fx--sky" aria-hidden="true">
+    <div class="fx__stars"></div>
+    <div class="fx__clouds"></div>
+    <div class="fx__moon"></div>
+  </div>
+  <div class="fx fx--grain" aria-hidden="true"></div>
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ===== Navbar ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#home" class="brand" aria-label="Beranda Arvandra">
+        <span class="brand__mark">
+          <span class="brand__mark-face" aria-hidden="true"></span>
+          <span class="brand__mark-text">A</span>
+        </span>
+        <span class="brand__text">arvandra<span class="brand__dot">.</span></span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#home" class="nav__link is-active">Home</a>
+        <a href="#tentang" class="nav__link">Tentang</a>
+        <a href="#hobi" class="nav__link">Hobi</a>
+        <a href="#portofolio" class="nav__link">Portofolio</a>
+        <a href="#kontak" class="nav__link">Kontak</a>
+        <a href="#kontak" class="btn btn--primary nav__cta">
+          Mari Ngobrol
+          <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="9" y="7" width="2" height="2" fill="currentColor"/>
+            <rect x="11" y="5" width="2" height="2" fill="currentColor"/>
+            <rect x="13" y="3" width="2" height="2" fill="currentColor"/>
+          </svg>
+        </a>
+      </nav>
+
+      <div class="nav__actions">
+        <button
+          class="icon-btn theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Aktifkan mode siang"
+          title="Ganti waktu: siang / malam"
+        >
+          <svg class="icon icon--sun" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="7" y="1" width="2" height="3" fill="currentColor"/>
+            <rect x="7" y="12" width="2" height="3" fill="currentColor"/>
+            <rect x="1" y="7" width="3" height="2" fill="currentColor"/>
+            <rect x="12" y="7" width="3" height="2" fill="currentColor"/>
+            <rect x="6" y="6" width="4" height="4" fill="currentColor"/>
+            <rect x="3" y="3" width="2" height="2" fill="currentColor"/>
+            <rect x="11" y="3" width="2" height="2" fill="currentColor"/>
+            <rect x="3" y="11" width="2" height="2" fill="currentColor"/>
+            <rect x="11" y="11" width="2" height="2" fill="currentColor"/>
+          </svg>
+          <svg class="icon icon--moon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="5" y="1" width="6" height="2" fill="currentColor"/>
+            <rect x="3" y="3" width="2" height="4" fill="currentColor"/>
+            <rect x="5" y="7" width="7" height="2" fill="currentColor"/>
+            <rect x="10" y="9" width="2" height="2" fill="currentColor"/>
+            <rect x="7" y="11" width="3" height="2" fill="currentColor"/>
+          </svg>
+        </button>
+
+        <button
+          class="hamburger"
+          id="hamburger"
+          type="button"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__backdrop" id="navBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+      <div class="hero__terrain" aria-hidden="true">
+        <svg viewBox="0 0 1600 280" preserveAspectRatio="none" shape-rendering="crispEdges">
+          <path
+            class="terrain__mount"
+            d="M0 168 H160 V140 H300 V156 H460 V124 H620 V150 H780 V118 H940 V148 H1100 V130 H1260 V154 H1420 V134 H1600 V280 H0 Z"
+          />
+          <path
+            class="terrain__grass"
+            d="M0 196 H200 V176 H380 V190 H560 V166 H740 V188 H920 V162 H1100 V186 H1280 V170 H1460 V188 H1600 V280 H0 Z"
+          />
+          <path
+            class="terrain__dirt"
+            d="M0 210 H200 V190 H380 V204 H560 V180 H740 V202 H920 V176 H1100 V200 H1280 V184 H1460 V202 H1600 V280 H0 Z"
+          />
+        </svg>
+      </div>
+
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="pill reveal" data-reveal>
+            <span class="pill__dot"></span> Terbuka untuk freelance &amp; kolaborasi
+          </span>
+
+          <h1 class="hero__title reveal" data-reveal style="--delay: 0.06s">
+            <span class="hero__title-hi">Halo, saya</span>
+            <span class="gradient-text">Arvandra Eka Pratama</span>
+            <span class="hero__title-outline"></span>
+          </h1>
+
+          <p class="hero__role reveal" data-reveal style="--delay: 0.12s">
+            <span class="hero__role-label">Seorang</span>
+            <span class="type-wrap">
+              <span id="typed" class="typed"></span><span class="caret" aria-hidden="true"></span>
+            </span>
+          </p>
+
+          <p class="hero__lead reveal" data-reveal style="--delay: 0.18s">
+            Mengubah ide sederhana menjadi pengalaman digital yang rapi, cepat, dan
+            enak dipakai. Menikmati kopi, anime, dan baris kode yang berantakan
+            sampai akhirnya jadi.
+          </p>
+
+          <div class="hero__actions reveal" data-reveal style="--delay: 0.24s">
+            <a href="#portofolio" class="btn btn--primary">
+              Lihat Portofolio
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="9" y="7" width="2" height="2" fill="currentColor"/>
+                <rect x="11" y="5" width="2" height="2" fill="currentColor"/>
+                <rect x="13" y="3" width="2" height="2" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#kontak" class="btn btn--ghost">
+              <span class="btn__dot"></span> Kenalan Yuk
+            </a>
+          </div>
+
+          <div class="hero__socials reveal" data-reveal style="--delay: 0.3s">
+            <span class="hero__socials-label">Temukan saya di</span>
+            <div class="socials">
+              <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub" class="social" title="GitHub">
+                <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="6" y="0" width="4" height="1" fill="currentColor"/>
+                  <rect x="4" y="1" width="8" height="1" fill="currentColor"/>
+                  <rect x="3" y="2" width="10" height="2" fill="currentColor"/>
+                  <rect x="2" y="4" width="12" height="5" fill="currentColor"/>
+                  <rect x="3" y="9" width="10" height="1" fill="currentColor"/>
+                  <rect x="4" y="10" width="8" height="1" fill="currentColor"/>
+                  <rect x="5" y="11" width="4" height="1" fill="currentColor"/>
+                  <rect x="1" y="6" width="1" height="3" fill="currentColor"/>
+                  <rect x="14" y="6" width="1" height="3" fill="currentColor"/>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="social" title="Instagram">
+                <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <rect x="5" y="5" width="6" height="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <rect x="11" y="2" width="2" height="2" fill="currentColor"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social" title="LinkedIn">
+                <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="1" y="1" width="5" height="5" fill="currentColor"/>
+                  <rect x="1" y="8" width="5" height="7" fill="currentColor"/>
+                  <rect x="8" y="7" width="3" height="8" fill="currentColor"/>
+                  <rect x="12" y="8" width="3" height="3" fill="currentColor"/>
+                  <rect x="12" y="12" width="3" height="3" fill="currentColor"/>
+                </svg>
+              </a>
+              <a href="mailto:halo@arvandra.dev" aria-label="Email" class="social" title="Email">
+                <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="0" y="3" width="16" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <rect x="1" y="5" width="3" height="3" fill="currentColor" transform="rotate(45 2.5 6.5)"/>
+                  <rect x="12" y="5" width="3" height="3" fill="currentColor" transform="rotate(45 13.5 6.5)"/>
+                  <rect x="3" y="10" width="10" height="2" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero visual -->
+        <div class="hero__visual reveal" data-reveal style="--delay: 0.18s">
+          <div class="mc-float mc-float--1" aria-hidden="true"></div>
+          <div class="mc-float mc-float--2" aria-hidden="true"></div>
+          <div class="mc-float mc-float--3" aria-hidden="true"></div>
+
+          <div class="mc-badge" aria-hidden="true">
+            <span class="mc-badge__face">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <rect width="16" height="16" fill="#5C9E3C"/>
+                <rect x="1" y="1" width="14" height="14" fill="#6BA347"/>
+                <rect x="3" y="4" width="3" height="3" fill="#101010"/>
+                <rect x="10" y="4" width="3" height="3" fill="#101010"/>
+                <rect x="4" y="9" width="2" height="2" fill="#101010"/>
+                <rect x="7" y="9" width="2" height="3" fill="#101010"/>
+                <rect x="10" y="9" width="2" height="2" fill="#101010"/>
+                <rect x="4" y="11" width="2" height="1" fill="#101010"/>
+                <rect x="10" y="11" width="2" height="1" fill="#101010"/>
+              </svg>
+            </span>
+            <span class="mc-badge__label">Open to work</span>
+          </div>
+
+          <div class="profile" id="profileCard" data-glow>
+            <span class="profile__spot" aria-hidden="true"></span>
+
+            <div class="profile__head">
+              <span class="mono">PLAYER / 2026</span>
+              <span class="status"><span class="status__dot"></span> Available</span>
+            </div>
+
+            <div class="mc-cube" aria-hidden="true">
+              <span class="mc-cube__face mc-cube__face--front">
+                <span class="mc-cube__portrait">
+                  <img src="image/foto-profil.jpeg" alt="" />
+                </span>
+              </span>
+              <span class="mc-cube__face mc-cube__face--top"></span>
+              <span class="mc-cube__face mc-cube__face--side"></span>
+            </div>
+
+            <h2 class="profile__name">Arvandra Eka Pratama</h2>
+            <p class="profile__role">Web Developer · UI Enthusiast</p>
+
+            <div class="profile__meta">
+              <div><strong>12+</strong><span>Project</span></div>
+              <i aria-hidden="true"></i>
+              <div><strong>3+</strong><span>Tahun</span></div>
+              <i aria-hidden="true"></i>
+              <div><strong>∞</strong><span>Penasaran</span></div>
+            </div>
+
+            <a href="#tentang" class="profile__cta">
+              Kenalan lebih dekat
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
+                <rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+                <rect x="5" y="7" width="2" height="2" fill="currentColor"/>
+                <rect x="3" y="9" width="2" height="2" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="float-chip chip--tl" aria-hidden="true">
+            <svg class="px-icon" viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="5" y="2" width="6" height="12" fill="#FED83D"/>
+              <rect x="3" y="4" width="10" height="8" fill="#FED83D"/>
+              <rect x="6" y="6" width="4" height="4" fill="#E0B02A"/>
+              <rect x="5" y="3" width="2" height="1" fill="#FFF0A8"/>
+            </svg>
+            Fast learner
+          </div>
+          <div class="float-chip chip--br" aria-hidden="true">
+            <svg class="px-icon" viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="5" y="2" width="6" height="2" fill="#9FF8EC"/>
+              <rect x="4" y="4" width="8" height="2" fill="#5AEDD9"/>
+              <rect x="3" y="6" width="10" height="4" fill="#5AEDD9"/>
+              <rect x="4" y="10" width="8" height="2" fill="#2FB3A6"/>
+              <rect x="6" y="12" width="4" height="2" fill="#1E8C82"/>
+            </svg>
+            Detail oriented
+          </div>
+          <div class="float-chip chip--bl" aria-hidden="true">
+            <svg class="px-icon" viewBox="0 0 16 16" shape-rendering="crispEdges">
+              <rect x="4" y="2" width="8" height="4" fill="#C87F4A"/>
+              <rect x="4" y="6" width="8" height="4" fill="#A8653A"/>
+              <rect x="3" y="10" width="4" height="2" fill="#E8E8E8"/>
+              <rect x="2" y="12" width="3" height="2" fill="#DCDCDC"/>
+              <rect x="6" y="3" width="3" height="1" fill="#E0A06A"/>
+            </svg>
+            Powered by kopi
+          </div>
+        </div>
+      </div>
+
+      <a href="#tentang" class="scroll-hint" aria-label="Gulir ke bagian tentang">
+        <span class="scroll-hint__mouse"><span></span></span>
+        <span>Scroll</span>
+      </a>
+    </section>
+
+    <!-- ===== Marquee ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Web Development <i>✦</i> UI / UX Design <i>✦</i> JavaScript <i>✦</i> Creative Coding <i>✦</i> Responsive Layout <i>✦</i></span>
+        <span>Web Development <i>✦</i> UI / UX Design <i>✦</i> JavaScript <i>✦</i> Creative Coding <i>✦</i> Responsive Layout <i>✦</i></span>
+      </div>
+    </div>
+
+    <!-- ===== Tentang ===== -->
+    <section class="section" id="tentang">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker reveal" data-reveal><span>01</span> Tentang Saya</span>
+          <h2 class="section-title reveal" data-reveal style="--delay: 0.06s">
+            Perkenalkan,<br />
+            <span class="gradient-text">manusia di balik layar ini.</span>
+          </h2>
+          <p class="section-sub reveal" data-reveal style="--delay: 0.1s">
+            Sedikit cerita tentang siapa saya, apa yang saya kerjakan, dan hal-hal
+            kecil yang bikin saya betah di depan layar.
+          </p>
+        </div>
+
+        <div class="about__grid">
+          <div class="about__copy">
+            <p class="about__lead reveal" data-reveal>
+              Nama saya <strong>Arvandra Eka Pratama</strong>. Saya tertarik pada dunia
+              web sejak penasaran bagaimana sebuah halaman bisa terlihat bagus dan
+              bekerja semulus itu.
+            </p>
+            <p class="reveal" data-reveal style="--delay: 0.05s">
+              Sekarang saya menghabiskan waktu membangun antarmuka yang bersih,
+              responsif, dan menyenangkan digunakan. Bagi saya, website bukan cuma
+              soal tampilan — tapi tentang bagaimana orang merasa saat memakainya.
+            </p>
+            <p class="reveal" data-reveal style="--delay: 0.1s">
+              Saya suka detail kecil: transisi yang pas, tipografi yang nyaman dibaca,
+              dan layout yang tetap rapi di layar sekecil apa pun. Di luar coding, saya
+              senang menonton anime, main game, dan mengoleksi potongan momen random
+              yang bikin hari jadi lebih ringan.
+            </p>
+
+            <div class="skills reveal" data-reveal style="--delay: 0.14s">
+              <div class="skill-bar" style="--value: 92%">
+                <div class="skill-bar__top"><span>HTML &amp; CSS</span><em>92%</em></div>
+                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
+              </div>
+              <div class="skill-bar" style="--value: 82%">
+                <div class="skill-bar__top"><span>JavaScript</span><em>82%</em></div>
+                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
+              </div>
+              <div class="skill-bar" style="--value: 74%">
+                <div class="skill-bar__top"><span>React</span><em>74%</em></div>
+                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
+              </div>
+              <div class="skill-bar" style="--value: 86%">
+                <div class="skill-bar__top"><span>UI / UX Design</span><em>86%</em></div>
+                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
+              </div>
+            </div>
+
+            <div class="skill-chips reveal" data-reveal style="--delay: 0.18s">
+              <span class="skill">Figma</span>
+              <span class="skill">Tailwind</span>
+              <span class="skill">Git</span>
+              <span class="skill">Responsive</span>
+              <span class="skill">Web Motion</span>
+              <span class="skill">Problem Solving</span>
+            </div>
+          </div>
+
+          <aside class="about__side">
+            <figure class="portrait reveal" data-reveal data-glow>
+              <img src="image/foto-profil.jpeg" alt="Foto Arvandra Eka Pratama" loading="lazy" />
+              <figcaption>Arvandra —IRL</figcaption>
+            </figure>
+
+            <div class="info-card reveal" data-reveal data-glow>
+              <span class="info-card__spot" aria-hidden="true"></span>
+              <span class="mono info-card__label">Profil singkat</span>
+              <ul class="info-list">
+                <li><span>Nama</span><strong>Arvandra Eka Pratama</strong></li>
+                <li><span>Lokasi</span><strong>Indonesia</strong></li>
+                <li><span>Fokus</span><strong>Front-End &amp; UI/UX</strong></li>
+                <li><span>Status</span><strong class="text-green">Open to work</strong></li>
+              </ul>
+            </div>
+
+            <div class="stat-grid">
+              <div class="stat-card reveal" data-reveal data-glow style="--delay: 0.04s">
+                <span class="stat-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="5" y="1" width="6" height="3" fill="#C9A96E"/>
+                    <rect x="3" y="4" width="10" height="4" fill="#9C7B4E"/>
+                    <rect x="3" y="8" width="10" height="2" fill="#6B4F2A"/>
+                    <rect x="5" y="10" width="6" height="5" fill="#9C7B4E"/>
+                    <rect x="7" y="12" width="2" height="2" fill="#6B4F2A"/>
+                  </svg>
+                </span>
+                <span class="stat-card__num" data-count="12" data-suffix="+">0</span>
+                <span class="stat-card__label">Project selesai</span>
+              </div>
+              <div class="stat-card reveal" data-reveal data-glow style="--delay: 0.08s">
+                <span class="stat-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="7" y="1" width="2" height="3" fill="#9FF8EC"/>
+                    <rect x="4" y="4" width="8" height="2" fill="#5AEDD9"/>
+                    <rect x="2" y="6" width="12" height="4" fill="#5AEDD9"/>
+                    <rect x="4" y="10" width="8" height="2" fill="#2FB3A6"/>
+                    <rect x="6" y="12" width="4" height="2" fill="#1E8C82"/>
+                  </svg>
+                </span>
+                <span class="stat-card__num" data-count="3" data-suffix="+">0</span>
+                <span class="stat-card__label">Tahun belajar</span>
+              </div>
+            </div>
+
+            <blockquote class="quote reveal" data-reveal style="--delay: 0.12s">
+              <span aria-hidden="true">“</span>
+              Build it simple, make it feel special.
+            </blockquote>
+          </aside>
+        </div>
+
+        <div class="timeline reveal" data-reveal>
+          <div class="timeline__item">
+            <span class="timeline__year">2023</span>
+            <div>
+              <h3>Mulai penasaran</h3>
+              <p>Baris HTML pertama, layout berantakan, dan rasa ingin tahu yang tidak berhenti.</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__year">2024</span>
+            <div>
+              <h3>Serius di front-end</h3>
+              <p>Belajar JavaScript, React, dan mulai membangun project iseng untuk latihan.</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__year">2026</span>
+            <div>
+              <h3>Freelance &amp; kolaborasi</h3>
+              <p>Membantu UMKM dan komunitas punya website yang rapi sekaligus enak dipakai.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Hobi ===== -->
+    <section class="section" id="hobi">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <span class="kicker reveal" data-reveal><span>02</span> Hobi</span>
+            <h2 class="section-title reveal" data-reveal style="--delay: 0.06s">
+              Hal yang bikin saya <span class="gradient-text">tetap waras.</span>
+            </h2>
+          </div>
+          <p class="section-sub section-head__desc reveal" data-reveal style="--delay: 0.1s">
+            Bukan cuma ngoding. Ini beberapa hal yang saya nikmati saat laptop
+            ditutup (walau kadang tetap dibuka).
+          </p>
+        </div>
+
+        <div class="hobby-grid">
+          <article class="hobby hobby--feature reveal" data-reveal data-glow>
+            <img src="unnamed.png" alt="Ilustrasi dua orang menatap laut" class="hobby__img" loading="lazy" />
+            <div class="hobby__overlay">
+              <span class="hobby__tag">Watching</span>
+              <h3>Nonton Anime</h3>
+              <p>Cerita yang bagus bisa jadi bahan bakar ide desain yang tidak terduga.</p>
+            </div>
+            <span class="hobby__num" aria-hidden="true">01</span>
+          </article>
+
+          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.05s">
+            <span class="hobby__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <rect x="1" y="2" width="14" height="10" fill="#2B2B2B"/>
+                <rect x="2" y="3" width="12" height="8" fill="#4F9BD8"/>
+                <rect x="3" y="4" width="4" height="1" fill="#BFE3FF"/>
+                <rect x="3" y="6" width="8" height="1" fill="#3A78B0"/>
+                <rect x="3" y="8" width="6" height="1" fill="#3A78B0"/>
+                <rect x="6" y="12" width="4" height="2" fill="#8B8B8B"/>
+                <rect x="4" y="14" width="8" height="1" fill="#6F6F6F"/>
+              </svg>
+            </span>
+            <h3>Ngoding</h3>
+            <p>Bikin project iseng, ngoprek layout, dan jatuh cinta pada error yang akhirnya solved.</p>
+            <div class="hobby__tags"><span>HTML</span><span>JS</span></div>
+          </article>
+
+          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.1s">
+            <span class="hobby__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <rect x="4" y="2" width="8" height="3" fill="#E52521"/>
+                <rect x="3" y="4" width="10" height="4" fill="#F2534D"/>
+                <rect x="5" y="5" width="2" height="2" fill="#FFD9A0"/>
+                <rect x="9" y="5" width="2" height="2" fill="#FFD9A0"/>
+                <rect x="2" y="8" width="12" height="4" fill="#C87F4A"/>
+                <rect x="4" y="8" width="8" height="2" fill="#E0A06A"/>
+                <rect x="6" y="12" width="4" height="2" fill="#8B5A3C"/>
+              </svg>
+            </span>
+            <h3>Desain UI</h3>
+            <p>Menyusun warna, grid, dan tipografi sampai terasa “pas” di mata.</p>
+            <div class="hobby__tags"><span>Figma</span><span>Moodboard</span></div>
+          </article>
+
+          <article class="hobby hobby--photo reveal" data-reveal data-glow style="--delay: 0.12s">
+            <img src="image/boleh.png" alt="Momen random saat hujan" class="hobby__img" loading="lazy" />
+            <div class="hobby__overlay">
+              <span class="hobby__tag">Random moment</span>
+              <h3>Foto Momen Absurd</h3>
+              <p>Karena momen random itu yang paling sering bikin ketawa.</p>
+            </div>
+          </article>
+
+          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.16s">
+            <span class="hobby__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <rect x="2" y="5" width="12" height="7" fill="#2B2B2B"/>
+                <rect x="3" y="6" width="10" height="5" fill="#6E6E6E"/>
+                <rect x="4" y="7" width="3" height="3" fill="#2B2B2B"/>
+                <rect x="5" y="8" width="1" height="1" fill="#6E6E6E"/>
+                <rect x="10" y="7" width="1" height="1" fill="#E52521"/>
+                <rect x="11" y="8" width="1" height="1" fill="#E52521"/>
+                <rect x="11" y="7" width="1" height="1" fill="#E52521"/>
+                <rect x="10" y="8" width="1" height="1" fill="#E52521"/>
+              </svg>
+            </span>
+            <h3>Gaming</h3>
+            <p>Refreshing otak, melatih strategi, dan kadang jadi inspirasi interaksi UI.</p>
+            <div class="hobby__tags"><span>Chill</span><span>Story mode</span></div>
+          </article>
+
+          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.2s">
+            <span class="hobby__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <rect x="7" y="2" width="1" height="8" fill="#E8E8E8"/>
+                <rect x="8" y="2" width="4" height="1" fill="#E8E8E8"/>
+                <rect x="11" y="3" width="1" height="3" fill="#E8E8E8"/>
+                <rect x="5" y="9" width="3" height="3" fill="#E8E8E8"/>
+                <rect x="4" y="10" width="1" height="1" fill="#E8E8E8"/>
+                <rect x="5" y="12" width="2" height="1" fill="#BEBEBE"/>
+              </svg>
+            </span>
+            <h3>Musik</h3>
+            <p>Playlist yang tepat bisa mengubah satu jam debugging jadi terasa cepat.</p>
+            <div class="hobby__tags"><span>Lo-fi</span><span>Indie</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Portofolio ===== -->
+    <section class="section" id="portofolio">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <span class="kicker reveal" data-reveal><span>03</span> Portofolio</span>
+            <h2 class="section-title reveal" data-reveal style="--delay: 0.06s">
+              Sedikit <span class="gradient-text">karya terpilih.</span>
+            </h2>
+          </div>
+          <a href="https://github.com/" target="_blank" rel="noopener" class="link-arrow reveal" data-reveal style="--delay: 0.1s">
+            Lihat semua project
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
+              <rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+              <rect x="5" y="7" width="2" height="2" fill="currentColor"/>
+              <rect x="3" y="9" width="2" height="2" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="work-filter reveal" data-reveal role="tablist" aria-label="Filter project">
+          <button type="button" class="filter-chip is-active" data-filter="all" role="tab" aria-selected="true">Semua</button>
+          <button type="button" class="filter-chip" data-filter="web" role="tab" aria-selected="false">Web</button>
+          <button type="button" class="filter-chip" data-filter="design" role="tab" aria-selected="false">UI / UX</button>
+          <button type="button" class="filter-chip" data-filter="lab" role="tab" aria-selected="false">Eksperimen</button>
+        </div>
+
+        <div class="work-grid" id="workGrid">
+          <article class="work reveal" data-reveal data-category="web" data-glow>
+            <a href="#" class="work__link" aria-label="Lihat project Nexora Studio">
+              <div class="work__thumb work__thumb--one">
+                <div class="mock">
+                  <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url"></span></div>
+                  <div class="mock__body">
+                    <span class="mock__chip"></span>
+                    <span class="mock__line mock__line--lg"></span>
+                    <span class="mock__line"></span>
+                    <span class="mock__line mock__line--sm"></span>
+                    <span class="mock__btn"></span>
+                  </div>
+                </div>
+                <span class="work__num">01</span>
+                <span class="work__year">2026</span>
+              </div>
+              <div class="work__info">
+                <div>
+                  <h3>Nexora Studio</h3>
+                  <p>Landing page studio kreatif dengan animasi halus dan layout modern.</p>
+                </div>
+                <span class="work__go">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                    <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
+                    <rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+                    <rect x="5" y="7" width="2" height="2" fill="currentColor"/>
+                    <rect x="3" y="9" width="2" height="2" fill="currentColor"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="work__tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            </a>
+          </article>
+
+          <article class="work reveal" data-reveal data-category="web" data-glow style="--delay: 0.06s">
+            <a href="#" class="work__link" aria-label="Lihat project TaskFlow">
+              <div class="work__thumb work__thumb--two">
+                <div class="mock mock--app">
+                  <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url"></span></div>
+                  <div class="mock__body">
+                    <span class="mock__check"></span>
+                    <span class="mock__check"></span>
+                    <span class="mock__check mock__check--done"></span>
+                    <span class="mock__line"></span>
+                    <span class="mock__line mock__line--sm"></span>
+                  </div>
+                </div>
+                <span class="work__num">02</span>
+                <span class="work__year">2025</span>
+              </div>
+              <div class="work__info">
+                <div>
+                  <h3>TaskFlow</h3>
+                  <p>Aplikasi to-do minimalis dengan penyimpanan lokal dan drag feel.</p>
+                </div>
+                <span class="work__go">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                    <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
+                    <rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+                    <rect x="5" y="7" width="2" height="2" fill="currentColor"/>
+                    <rect x="3" y="9" width="2" height="2" fill="currentColor"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="work__tags"><span>React</span><span>Tailwind</span></div>
+            </a>
+          </article>
+
+          <article class="work reveal" data-reveal data-category="lab" data-glow style="--delay: 0.12s">
+            <a href="#" class="work__link" aria-label="Lihat project OMDPL Gallery">
+              <div class="work__thumb work__thumb--img">
+                <img src="unnamed.png" alt="Tampilan project OMDPL Gallery" class="work__img" loading="lazy" />
+                <span class="work__num work__num--light">03</span>
+                <span class="work__year work__year--light">2025</span>
+              </div>
+              <div class="work__info">
+                <div>
+                  <h3>OMDPL Gallery</h3>
+                  <p>Galeri visual anime dengan filter kategori dan lightbox interaktif.</p>
+                </div>
+                <span class="work__go">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                    <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
+                    <rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+                    <rect x="5" y="7" width="2" height="2" fill="currentColor"/>
+                    <rect x="3" y="9" width="2" height="2" fill="currentColor"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="work__tags"><span>JavaScript</span><span>CSS Grid</span><span>Lightbox</span></div>
+            </a>
+          </article>
+
+          <article class="work reveal" data-reveal data-category="design" data-glow style="--delay: 0.18s">
+            <a href="#" class="work__link" aria-label="Lihat project Aurora UI Kit">
+              <div class="work__thumb work__thumb--four">
+                <div class="mock mock--kit">
+                  <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url"></span></div>
+                  <div class="mock__body">
+                    <div class="mock__swatches">
+                      <span style="--c: #7C5CFF"></span>
+                      <span style="--c: #22D3EE"></span>
+                      <span style="--c: #FF7AB8"></span>
+                      <span style="--c: #3DDC97"></span>
+                    </div>
+                    <span class="mock__line mock__line--lg"></span>
+                    <div class="mock__type">
+                      <span>Aa</span>
+                      <span class="mock__type-lines"><i></i><i></i></span>
+                    </div>
+                    <span class="mock__btn mock__btn--wide"></span>
+                  </div>
+                </div>
+                <span class="work__num">04</span>
+                <span class="work__year">2026</span>
+              </div>
+              <div class="work__info">
+                <div>
+                  <h3>Aurora UI Kit</h3>
+                  <p>Eksplorasi design system: palet warna, tipografi, dan komponen dasar.</p>
+                </div>
+                <span class="work__go">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                    <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
+                    <rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+                    <rect x="5" y="7" width="2" height="2" fill="currentColor"/>
+                    <rect x="3" y="9" width="2" height="2" fill="currentColor"/>
+                  </svg>
+                </span>
+              </div>
+              <div class="work__tags"><span>Figma</span><span>Design System</span></div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Kontak ===== -->
+    <section class="section section--contact" id="kontak">
+      <div class="container">
+        <div class="contact reveal" data-reveal>
+          <span class="contact__glow" aria-hidden="true"></span>
+
+          <div class="contact__copy">
+            <span class="kicker"><span>04</span> Kontak</span>
+            <h2 class="section-title">
+              Punya ide?<br />
+              <span class="gradient-text">Ayo bikin bareng.</span>
+            </h2>
+            <p>
+              Terbuka untuk project freelance, kolaborasi, atau sekadar ngobrol soal
+              desain dan teknologi. Saya biasanya membalas dalam 1–2 hari.
+            </p>
+
+            <div class="contact__mail-row">
+              <a href="mailto:halo@arvandra.dev" class="contact__mail">
+                <span class="contact__mail-icon">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                    <rect x="0" y="3" width="16" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <rect x="1" y="5" width="3" height="3" fill="currentColor"/>
+                    <rect x="12" y="5" width="3" height="3" fill="currentColor"/>
+                    <rect x="3" y="10" width="10" height="2" fill="currentColor"/>
+                  </svg>
+                </span>
+                halo@arvandra.dev
+              </a>
+              <button
+                type="button"
+                class="copy-btn"
+                id="copyEmail"
+                data-copy="halo@arvandra.dev"
+                aria-label="Salin alamat email"
+                title="Salin email"
+              >
+                <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="5" y="2" width="9" height="9" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <rect x="2" y="5" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <rect x="4" y="7" width="4" height="4" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="contact__socials">
+              <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+
+            <div class="contact__note">
+              <span class="status__dot"></span>
+              Biasanya aktif Senin–Jumat, 09.00–18.00 WIB
+            </div>
+          </div>
+
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="name">Nama</label>
+              <input type="text" id="name" name="name" placeholder="Nama kamu" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="nama@email.com" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="message">Pesan</label>
+              <textarea id="message" name="message" rows="4" placeholder="Ceritakan ide atau project kamu..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block">
+              Kirim Pesan
+              <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="1" y="2" width="2" height="2" fill="currentColor"/>
+                <rect x="3" y="4" width="2" height="2" fill="currentColor"/>
+                <rect x="5" y="6" width="2" height="2" fill="currentColor"/>
+                <rect x="7" y="8" width="2" height="2" fill="currentColor"/>
+                <rect x="9" y="10" width="2" height="2" fill="currentColor"/>
+                <rect x="11" y="12" width="2" height="2" fill="currentColor"/>
+                <rect x="13" y="14" width="2" height="2" fill="currentColor"/>
+                <rect x="12" y="1" width="3" height="3" fill="currentColor"/>
+                <rect x="9" y="4" width="3" height="3" fill="currentColor"/>
+                <rect x="6" y="7" width="3" height="3" fill="currentColor"/>
+              </svg>
+            </button>
+            <p class="form-note">Form ini akan membuka aplikasi email kamu.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="brand__mark">
+            <span class="brand__mark-face" aria-hidden="true"></span>
+            <span class="brand__mark-text">A</span>
+          </span>
+          <div>
+            <strong>Arvandra Eka Pratama</strong>
+            <span>Web Developer &amp; UI Enthusiast</span>
+          </div>
+        </div>
+
+        <nav class="footer__links" aria-label="Navigasi footer">
+          <a href="#home">Home</a>
+          <a href="#tentang">Tentang</a>
+          <a href="#hobi">Hobi</a>
+          <a href="#portofolio">Portofolio</a>
+          <a href="#kontak">Kontak</a>
+        </nav>
+
+        <div class="footer__socials">
+          <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="6" y="0" width="4" height="1" fill="currentColor"/>
+              <rect x="4" y="1" width="8" height="1" fill="currentColor"/>
+              <rect x="3" y="2" width="10" height="2" fill="currentColor"/>
+              <rect x="2" y="4" width="12" height="5" fill="currentColor"/>
+              <rect x="3" y="9" width="10" height="1" fill="currentColor"/>
+              <rect x="4" y="10" width="8" height="1" fill="currentColor"/>
+              <rect x="5" y="11" width="4" height="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="5" y="5" width="6" height="6" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="11" y="2" width="2" height="2" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="1" y="1" width="5" height="5" fill="currentColor"/>
+              <rect x="1" y="8" width="5" height="7" fill="currentColor"/>
+              <rect x="8" y="7" width="3" height="8" fill="currentColor"/>
+              <rect x="12" y="8" width="3" height="3" fill="currentColor"/>
+              <rect x="12" y="12" width="3" height="3" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span id="year">2026</span> Arvandra Eka Pratama. Dibuat dengan rasa penasaran.</p>
+        <p class="footer__made">HTML · CSS · JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Minecraft HUD ===== -->
+  <div class="hud" id="hud" aria-hidden="true">
+    <div class="hud__bars">
+      <div class="hud__row hud__row--hearts" id="hudHearts"></div>
+      <div class="hud__row hud__row--food" id="hudFood"></div>
+    </div>
+    <div class="hud__xp">
+      <span class="hud__xp-fill" id="hudXp"></span>
+      <span class="hud__level" id="hudLevel">1</span>
+    </div>
+  </div>
+
+  <a href="#home" class="to-top" id="toTop" aria-label="Kembali ke atas">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <rect x="7" y="2" width="2" height="8" fill="currentColor"/>
+      <rect x="5" y="4" width="2" height="2" fill="currentColor"/>
+      <rect x="3" y="6" width="2" height="2" fill="currentColor"/>
+      <rect x="9" y="4" width="2" height="2" fill="currentColor"/>
+      <rect x="11" y="6" width="2" height="2" fill="currentColor"/>
+    </svg>
+  </a>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Screenshot / hasil testing lokal
+_shot_*.png
+_mc_*.png
+shot-*.png
+_dom.txt
+_preview.html
+_shots.js
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
