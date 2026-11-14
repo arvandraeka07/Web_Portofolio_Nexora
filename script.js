@@ -9,6 +9,8 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
 
+  const CONTACT_EMAIL = "arvandraeka05@gmail.com";
+
   const $ = (selector, scope = document) => scope.querySelector(selector);
   const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
@@ -24,6 +26,41 @@
     toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 3800);
   }
 
+  /* ---------- Advancement popup ---------- */
+  const advancement = $("#advancement");
+  const advancementText = $("#advancementText");
+  const advancementQueue = [];
+  const ADVANCEMENT_KEY = "arvandra-advancement";
+  let advancementTimer;
+  let advancementRunning = false;
+
+  function playNextAdvancement() {
+    if (!advancement || !advancementText) return;
+
+    const next = advancementQueue.shift();
+
+    if (!next) {
+      advancementRunning = false;
+      return;
+    }
+
+    advancementRunning = true;
+    advancementText.textContent = next;
+    advancement.classList.add("is-visible");
+
+    clearTimeout(advancementTimer);
+    advancementTimer = setTimeout(() => {
+      advancement.classList.remove("is-visible");
+      setTimeout(playNextAdvancement, 380);
+    }, 4200);
+  }
+
+  function showAdvancement(message) {
+    if (!advancement || !advancementText) return;
+    advancementQueue.push(message);
+    if (!advancementRunning) playNextAdvancement();
+  }
+
   /* ---------- Year ---------- */
   const year = $("#year");
   if (year) year.textContent = new Date().getFullYear();
@@ -36,6 +73,7 @@
 
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
+    $$("img[data-day]").forEach((img) => { const s = theme === "light" ? img.dataset.day : img.dataset.night; if (img.getAttribute("src") !== s) img.setAttribute("src", s); });
 
     if (themeColor) {
       themeColor.setAttribute("content", theme === "light" ? "#7ea9ec" : "#0b1020");
@@ -60,7 +98,7 @@
         /* storage unavailable — theme still works for this session */
       }
 
-      showToast(next === "light" ? "Mode siang aktif ☀" : "Mode malam aktif ☾");
+      showToast(next === "light" ? "Mode siang aktif" : "Mode malam aktif");
     });
   }
 
@@ -104,6 +142,10 @@
 
   fillHudRow(hudHearts, HEART_SVG, 10);
   fillHudRow(hudFood, FOOD_SVG, 10);
+
+  /* 9-slot hotbar, like the real inventory bar */
+  const hudHotbar = $("#hudHotbar");
+  if (hudHotbar) hudHotbar.innerHTML = "<span></span>".repeat(9);
 
   function onScroll() {
     const scrolled = window.scrollY > 24;
@@ -232,9 +274,9 @@
   const roles = [
     "Web Developer",
     "UI/UX Enthusiast",
-    "Front-End Learner",
-    "Block Builder",
-    "Creative Coder",
+    "Mahasiswa Informatika",
+    "Anak DKV yang Ngoding",
+    "Pembaca Novel",
   ];
 
   if (typedEl) {
@@ -451,6 +493,7 @@
         }
 
         copyBtn.classList.add("is-copied");
+        unlockAdvancement("email", "Email disalin: " + text);
         showToast("Email disalin: " + text);
         setTimeout(() => copyBtn.classList.remove("is-copied"), 1800);
       } catch (error) {
@@ -476,7 +519,7 @@
       const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
       if (!name || !emailValid || !message) {
-        showToast("Lengkapi nama, email valid, dan pesan kamu dulu ya ✨");
+        showToast("Lengkapi nama, email valid, dan pesan kamu dulu ya");
 
         if (!name && nameInput) nameInput.focus();
         else if (!emailValid && emailInput) emailInput.focus();
@@ -487,11 +530,295 @@
       const subject = encodeURIComponent(`Halo dari ${name} — Portfolio`);
       const body = encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\n${message}`);
 
-      window.location.href = `mailto:halo@arvandra.dev?subject=${subject}&body=${body}`;
-      showToast("Membuka aplikasi email... Terima kasih sudah mampir! 👋");
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      showToast("Membuka aplikasi email... Terima kasih sudah mampir!");
       form.reset();
     });
   }
+
+  /* ---------- Advancement triggers ---------- */
+  function hasSeenAdvancement(key) {
+    try {
+      return sessionStorage.getItem(ADVANCEMENT_KEY + ":" + key) === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function markAdvancementSeen(key) {
+    try {
+      sessionStorage.setItem(ADVANCEMENT_KEY + ":" + key, "1");
+    } catch (error) {
+      /* storage unavailable */
+    }
+  }
+
+  function unlockAdvancement(key, message) {
+    if (hasSeenAdvancement(key)) return;
+    markAdvancementSeen(key);
+    showAdvancement(message);
+  }
+
+  if (advancement && !reduceMotion) {
+    setTimeout(() => unlockAdvancement("welcome", "Selamat datang di dunia Arvandra"), 2000);
+
+    const portfolioSection = $("#portofolio");
+
+    if (portfolioSection && "IntersectionObserver" in window) {
+      const advancementObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            unlockAdvancement("portfolio", "Karya ditemukan: portofolio terbuka");
+            observer.disconnect();
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      advancementObserver.observe(portfolioSection);
+    }
+  }
+
+  /* ---------- Creeper: klik untuk meledakkan ---------- */
+  const creeper = $("#creeper");
+
+  if (creeper) {
+    let exploding = false;
+
+    creeper.addEventListener("click", () => {
+      if (exploding) return;
+      exploding = true;
+      creeper.classList.add("is-boom");
+
+      const rect = creeper.getBoundingClientRect();
+      for (let i = 0; i < 3; i++) {
+        spawnParticles({ clientX: rect.left + rect.width / 2, clientY: rect.top + rect.height / 2 });
+      }
+
+      unlockAdvancement("creeper", "Aww man! Creeper meledak");
+      setTimeout(() => {
+        creeper.classList.remove("is-boom");
+        exploding = false;
+      }, 3500);
+    });
+  }
+
+  /* ---------- Debug screen (F3) ---------- */
+  const debugEl = $("#debug");
+  const debugToggle = $("#debugToggle");
+
+  if (debugEl) {
+    const BIOMES = { home: "Plains", tentang: "Forest", hobi: "Flower Forest", portofolio: "Windswept Hills", kontak: "Village" };
+
+    const updateDebug = () => {
+      if (!debugEl.classList.contains("is-on")) return;
+      let biome = sections.length ? sections[0].id : "home";
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top < window.innerHeight * 0.4) biome = section.id;
+      });
+      const theme = root.getAttribute("data-theme") === "light" ? "Siang" : "Malam";
+      debugEl.textContent =
+        "Arvandra Portfolio 1.0 (HTML/CSS/JS)\n" +
+        "XYZ: " + Math.round(window.innerWidth / 2) + " / 64 / " + Math.round(window.scrollY) + "\n" +
+        "Biome: minecraft:" + (BIOMES[biome] || "plains").toLowerCase().replace(" ", "_") + "\n" +
+        "Waktu: " + theme + " · Layar: " + window.innerWidth + "x" + window.innerHeight;
+    };
+
+    const toggleDebug = () => {
+      debugEl.classList.toggle("is-on");
+      updateDebug();
+    };
+
+    window.addEventListener("scroll", updateDebug, { passive: true });
+    window.addEventListener("resize", updateDebug);
+    if (debugToggle) debugToggle.addEventListener("click", toggleDebug);
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "F3") return;
+      event.preventDefault();
+      toggleDebug();
+    });
+  }
+
+  /* ---------- Kubus profil: 4 sisi (foto + hobi), tilt kursor, seret, slot hotbar, auto-showcase ---------- */
+  const cube = $("#mcCube");
+  const profileCard = $("#profileCard");
+
+  if (cube && profileCard) {
+    const VIEW_Y = -26;
+    const VIEW_X = -18;
+    const FACES = [
+      { name: "Foto", sub: "Andra IRL", y: 0 },
+      { name: "Baca Novel", sub: "hobi favorit", y: -90 },
+      { name: "Main Game", sub: "chill mode", y: -180 },
+      { name: "Olahraga", sub: "reset kepala", y: -270 },
+    ];
+    const faceBtns = Array.prototype.slice.call(document.querySelectorAll(".mc-face-btn"));
+    const faceLabel = $("#mcLabel");
+
+    let faceIndex = 0;
+    let baseY = VIEW_Y;
+    let rotY = baseY, rotX = VIEW_X, goalY = baseY, goalX = VIEW_X;
+    let dragging = false, moved = false, lastX = 0, onScreen = true, rafId = 0, lastTouch = 0;
+
+    const wrap = (deg) => ((((deg + 180) % 360) + 360) % 360) - 180;
+    const render = () => {
+      cube.style.transform = "rotateX(" + rotX.toFixed(2) + "deg) rotateY(" + rotY.toFixed(2) + "deg)";
+    };
+
+    const showFace = (index) => {
+      faceIndex = index;
+      const face = FACES[index];
+      if (faceLabel) faceLabel.innerHTML = "<b>" + face.name + "</b> · " + face.sub;
+      faceBtns.forEach((btn, i) => {
+        const active = i === index;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    };
+
+    const setFace = (index, byUser) => {
+      baseY = FACES[index].y + VIEW_Y;
+      goalY = baseY;
+      goalX = VIEW_X;
+      showFace(index);
+      if (byUser) lastTouch = Date.now();
+    };
+
+    const tick = (time) => {
+      if (onScreen && !dragging) {
+        const sway = reduceMotion ? 0 : Math.sin(time / 1300) * 4;
+        rotY += wrap(goalY + sway - rotY) * 0.09;
+        rotX += (goalX - rotX) * 0.09;
+        render();
+      }
+      rafId = window.requestAnimationFrame(tick);
+    };
+
+    if (!reduceMotion && finePointer) {
+      profileCard.addEventListener("pointermove", (event) => {
+        if (dragging) return;
+        const rect = profileCard.getBoundingClientRect();
+        goalY = baseY + ((event.clientX - rect.left) / rect.width - 0.5) * 40;
+        goalX = VIEW_X - ((event.clientY - rect.top) / rect.height - 0.5) * 26;
+      }, { passive: true });
+
+      profileCard.addEventListener("pointerleave", () => {
+        goalY = baseY;
+        goalX = VIEW_X;
+      });
+    }
+
+    cube.addEventListener("pointerdown", (event) => {
+      dragging = true;
+      moved = false;
+      lastX = event.clientX;
+      cube.classList.add("is-dragging");
+      cube.setPointerCapture(event.pointerId);
+    });
+
+    cube.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const dx = event.clientX - lastX;
+      lastX = event.clientX;
+      if (Math.abs(dx) > 0) moved = true;
+      rotY += dx * 0.7;
+      render();
+    });
+
+    const endDrag = (event) => {
+      if (!dragging) return;
+      dragging = false;
+      cube.classList.remove("is-dragging");
+      if (moved) {
+        // lepas = "pasang" blok: kunci ke sisi terdekat
+        const idx = ((Math.round(-wrap(rotY - VIEW_Y) / 90) % 4) + 4) % 4;
+        rotY = wrap(rotY);
+        setFace(idx, true);
+        unlockAdvancement("cube", "Blok diputar: kamu melihat semua sisinya");
+      } else {
+        spawnParticles(event);
+      }
+    };
+
+    cube.addEventListener("pointerup", endDrag);
+    cube.addEventListener("pointercancel", endDrag);
+
+    faceBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setFace(Number(btn.getAttribute("data-face")) || 0, true);
+        unlockAdvancement("cube", "Blok diputar: kamu melihat semua sisinya");
+      });
+    });
+
+    // showcase otomatis: kalau didiamkan, kubus ganti sisi sendiri
+    if (!reduceMotion) {
+      window.setInterval(() => {
+        if (!window.__cubeAuto || !onScreen || dragging || Date.now() - lastTouch < 7000) return;
+        setFace((faceIndex + 1) % FACES.length, false);
+      }, 4200);
+    }
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => { onScreen = entries[0].isIntersecting; }).observe(profileCard);
+    }
+
+    showFace(0);
+    rafId = window.requestAnimationFrame(tick);
+  }
+
+
+  /* ---------- Efek suara 8-bit (dari versi A, default mati) ---------- */
+  const sfxBtn = $("#sfxToggle");
+  let sfxOn = false, audioCtx = null;
+  try { sfxOn = localStorage.getItem("arvandra-sfx") === "1"; } catch (e) {}
+  const blip = (freq = 520) => {
+    if (!sfxOn) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    audioCtx = audioCtx || new AC();
+    const t = audioCtx.currentTime, o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = "square"; o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 1.35, t + 0.06);
+    g.gain.setValueAtTime(0.06, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+    o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(t + 0.08);
+  };
+  const paintSfx = () => { if (!sfxBtn) return; sfxBtn.setAttribute("aria-pressed", sfxOn); sfxBtn.classList.toggle("is-on", sfxOn); sfxBtn.setAttribute("aria-label", sfxOn ? "Matikan efek suara" : "Nyalakan efek suara"); };
+  paintSfx();
+  if (sfxBtn) sfxBtn.addEventListener("click", () => {
+    sfxOn = !sfxOn; paintSfx();
+    try { localStorage.setItem("arvandra-sfx", sfxOn ? "1" : "0"); } catch (e) {}
+    blip(660); showToast(sfxOn ? "Efek suara menyala" : "Efek suara mati");
+  });
+  document.addEventListener("pointerdown", (e) => { if (e.target.closest(".btn, .filter-chip, .tool-btn, .mc-face-btn, .icon-btn, .hobby")) blip(560); }, { passive: true });
+
+  /* ---------- Kontrol kubus: putar otomatis, meledak, acak ---------- */
+  const spinBtn = $("#cubeSpin"), boomBtn = $("#cubeBoom"), randBtn = $("#cubeRand"), mcCube = $("#mcCube");
+  window.__cubeAuto = true;
+  if (spinBtn) spinBtn.addEventListener("click", () => { window.__cubeAuto = !window.__cubeAuto; spinBtn.setAttribute("aria-pressed", window.__cubeAuto); });
+  if (boomBtn && mcCube) boomBtn.addEventListener("click", () => {
+    const on = !mcCube.classList.contains("is-exploded");
+    mcCube.classList.toggle("is-exploded", on); boomBtn.setAttribute("aria-pressed", on);
+    boomBtn.textContent = on ? "▣ Satukan" : "✸ Meledak"; blip(on ? 300 : 700);
+    if (on) unlockAdvancement("tnt", "TNT meledak: kubus terbuka lebar");
+  });
+  if (randBtn) randBtn.addEventListener("click", () => { const b = $$(".mc-face-btn"); if (b.length) b[Math.floor(Math.random() * b.length)].click(); });
+
+  /* ---------- Lightbox "inspect" ---------- */
+  const lb = $("#lightbox"), lbImg = $("#lightboxImg"), lbCap = $("#lightboxCap");
+  const closeLb = () => { if (lb) { lb.classList.remove("is-open"); lb.setAttribute("aria-hidden", "true"); } };
+  const openLb = (img) => {
+    if (!lb) return;
+    lbImg.src = img.currentSrc || img.src;
+    const card = img.closest(".hobby, .portrait");
+    lbCap.textContent = card ? (($("h3", card) || $("figcaption", card) || {}).textContent || "") : "";
+    lb.classList.add("is-open"); lb.setAttribute("aria-hidden", "false"); blip(680);
+  };
+  $$("[data-zoom], .portrait img").forEach((img) => {
+    img.addEventListener("click", () => openLb(img));
+    img.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(img); } });
+  });
+  if (lb) lb.addEventListener("click", (e) => { if (e.target === lb || e.target.closest("#lightboxX")) closeLb(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
 
   /* ---------- Back to top ---------- */
   if (toTop) {

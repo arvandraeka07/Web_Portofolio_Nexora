@@ -6,10 +6,31 @@
   <meta name="theme-color" content="#0B1020" id="themeColor" />
   <meta
     name="description"
-    content="Portofolio Arvandra Eka Pratama — Web Developer & UI/UX Enthusiast. Kenalan, lihat hobi, project, dan hubungi saya."
+    content="Portofolio Arvandra Eka Pratama, mahasiswa Informatika ITBAAS Indonesia dan lulusan SMK Desain Komunikasi Visual. Front-End & UI/UX enthusiast."
   />
   <meta name="author" content="Arvandra Eka Pratama" />
-  <title>Arvandra Eka Pratama — Web Developer & UI/UX Enthusiast</title>
+  <title>Arvandra Eka Pratama | Front-End & UI/UX</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Arvandra Eka Pratama | Front-End & UI/UX" />
+  <meta
+    property="og:description"
+    content="Mahasiswa Informatika semester 3 di ITBAAS Indonesia, lulusan SMK Desain Komunikasi Visual. Bikin antarmuka web yang rapi, cepat, dan enak dipakai."
+  />
+  <meta property="og:image" content="https://arvandraeka07.github.io/Web-Portofolio/image/foto-profil.jpeg" />
+  <meta property="og:url" content="https://arvandraeka07.github.io/Web-Portofolio/" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:site_name" content="Arvandra Eka Pratama — Portofolio" />
+  <link rel="canonical" href="https://arvandraeka07.github.io/Web-Portofolio/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arvandra Eka Pratama | Front-End & UI/UX" />
+  <meta name="twitter:image" content="https://arvandraeka07.github.io/Web-Portofolio/image/foto-profil.jpeg" />
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Arvandra Eka Pratama","alternateName":"Andra","url":"https://arvandraeka07.github.io/Web-Portofolio/","image":"https://arvandraeka07.github.io/Web-Portofolio/image/foto-profil.jpeg","email":"mailto:arvandraeka05@gmail.com","jobTitle":"Mahasiswa Informatika & Front-End Enthusiast","alumniOf":{"@type":"EducationalOrganization","name":"SMK Desain Komunikasi Visual"},"affiliation":{"@type":"CollegeOrUniversity","name":"ITBAAS Indonesia"},"sameAs":["https://github.com/arvandraeka07/","https://www.instagram.com/andraaeka_/","https://www.linkedin.com/in/arvandra-eka-pratama-8868b9420/"]}
+  </script>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.loader{display:none!important}</style></noscript>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
   <script>
     (function () {
@@ -32,6 +53,13 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__box">
+      <span class="loader__title">Memuat dunia...</span>
+      <span class="loader__bar"><i></i></span>
+      <span class="loader__sub">Membangun terrain · memasang block</span>
+    </div>
+  </div>
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
 
   <!-- ===== Sky / world decoration ===== -->
@@ -47,7 +75,7 @@
   <!-- ===== Navbar ===== -->
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#home" class="brand" aria-label="Beranda Arvandra">
+      <a href="#home" class="brand" aria-label="Beranda Arvandra Eka Pratama">
         <span class="brand__mark">
           <span class="brand__mark-face" aria-hidden="true"></span>
           <span class="brand__mark-text">A</span>
@@ -99,6 +127,8 @@
           </svg>
         </button>
 
+        <button class="icon-btn sfx-toggle" id="sfxToggle" type="button" aria-pressed="false" aria-label="Nyalakan efek suara" title="Efek suara 8-bit"><span aria-hidden="true">♪</span></button>
+
         <button
           class="hamburger"
           id="hamburger"
@@ -114,9 +144,34 @@
     <div class="nav__backdrop" id="navBackdrop" aria-hidden="true"></div>
   </header>
 
+  <!-- ===== Advancement popup (Minecraft style) ===== -->
+  <div class="advancement" id="advancement" role="status" aria-live="polite">
+    <span class="advancement__icon" aria-hidden="true">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+        <rect x="3" y="2" width="10" height="2" fill="#FED83D"/>
+        <rect x="2" y="4" width="12" height="8" fill="#FED83D"/>
+        <rect x="3" y="12" width="10" height="2" fill="#C89B1E"/>
+        <rect x="4" y="5" width="8" height="6" fill="#8ACC6B"/>
+        <rect x="5" y="6" width="6" height="4" fill="#5A8F3C"/>
+        <rect x="7" y="4" width="2" height="2" fill="#FFFFFF"/>
+      </svg>
+    </span>
+    <span class="advancement__text">
+      <strong>Advancement Made!</strong>
+      <span id="advancementText">Selamat datang di dunia Arvandra</span>
+    </span>
+  </div>
+
   <main id="main">
     <!-- ===== Hero ===== -->
     <section class="hero" id="home">
+      <button type="button" class="creeper" id="creeper" aria-label="Creeper berjalan — klik untuk meledakkan">
+        <svg class="creeper__sprite" viewBox="0 0 12 18" shape-rendering="crispEdges" aria-hidden="true">
+          <rect x="2" y="0" width="8" height="8" fill="#5A8F3C"/><rect x="3" y="2" width="2" height="2" fill="#0C1408"/><rect x="7" y="2" width="2" height="2" fill="#0C1408"/>
+          <rect x="5" y="4" width="2" height="2" fill="#0C1408"/><rect x="4" y="5" width="1" height="3" fill="#0C1408"/><rect x="7" y="5" width="1" height="3" fill="#0C1408"/>
+          <rect x="3" y="8" width="6" height="6" fill="#6BA347"/><rect x="2" y="14" width="3" height="4" fill="#4E7C33"/><rect x="7" y="14" width="3" height="4" fill="#4E7C33"/>
+        </svg>
+      </button>
       <div class="hero__terrain" aria-hidden="true">
         <svg viewBox="0 0 1600 280" preserveAspectRatio="none" shape-rendering="crispEdges">
           <path
@@ -132,18 +187,34 @@
             d="M0 210 H200 V190 H380 V204 H560 V180 H740 V202 H920 V176 H1100 V200 H1280 V184 H1460 V202 H1600 V280 H0 Z"
           />
         </svg>
+        <div class="hero__props">
+          <img class="prop prop--tree" src="sprites/tree.svg" alt="" width="80" height="112" style="--x: 2.5%; --y: 196" />
+          <img class="prop prop--tree prop--tree-b" src="sprites/tree.svg" alt="" width="80" height="112" style="--x: 92.5%; --y: 188" />
+          <span class="prop prop--torch" style="--x: 39.5%; --y: 166">
+            <img class="torch__flame" src="sprites/torch-flame.svg" alt="" width="24" height="24" />
+            <img class="torch__stick" src="sprites/torch-stick.svg" alt="" width="24" height="40" />
+          </span>
+          <img class="prop prop--pig" src="sprites/pig.svg" alt="" width="48" height="30" style="--x: 14%; --y: 176" />
+          <img class="prop prop--flower" src="sprites/flower-red.svg" alt="" width="28" height="36" style="--x: 22%; --y: 176" />
+          <img class="prop prop--flower" src="sprites/flower-yellow.svg" alt="" width="28" height="36" style="--x: 51%; --y: 188" />
+          <img class="prop prop--flower" src="sprites/flower-blue.svg" alt="" width="28" height="36" style="--x: 63%; --y: 162" />
+          <img class="prop prop--flower prop--flower-b" src="sprites/flower-red.svg" alt="" width="28" height="36" style="--x: 75%; --y: 186" />
+          <img class="prop prop--flower" src="sprites/flower-yellow.svg" alt="" width="28" height="36" style="--x: 86.5%; --y: 170" />
+          <img class="prop prop--tuft" src="sprites/tuft.svg" alt="" width="28" height="24" style="--x: 28%; --y: 190" />
+          <img class="prop prop--tuft" src="sprites/tuft.svg" alt="" width="28" height="24" style="--x: 55%; --y: 188" />
+          <img class="prop prop--tuft prop--flower-b" src="sprites/tuft.svg" alt="" width="28" height="24" style="--x: 82%; --y: 170" />
+        </div>
       </div>
 
       <div class="container hero__grid">
         <div class="hero__content">
           <span class="pill reveal" data-reveal>
-            <span class="pill__dot"></span> Terbuka untuk freelance &amp; kolaborasi
+            <span class="pill__dot"></span> Mahasiswa Informatika · Semester 3
           </span>
 
           <h1 class="hero__title reveal" data-reveal style="--delay: 0.06s">
             <span class="hero__title-hi">Halo, saya</span>
-            <span class="gradient-text">Arvandra Eka Pratama</span>
-            <span class="hero__title-outline"></span>
+            <span class="gradient-text hero__name">Arvandra Eka Pratama</span>
           </h1>
 
           <p class="hero__role reveal" data-reveal style="--delay: 0.12s">
@@ -154,9 +225,9 @@
           </p>
 
           <p class="hero__lead reveal" data-reveal style="--delay: 0.18s">
-            Mengubah ide sederhana menjadi pengalaman digital yang rapi, cepat, dan
-            enak dipakai. Menikmati kopi, anime, dan baris kode yang berantakan
-            sampai akhirnya jadi.
+            Lulusan SMK Desain Komunikasi Visual yang sekarang kuliah Informatika di
+            ITBAAS Indonesia. Suka menyulap ide jadi antarmuka web yang rapi, cepat,
+            dan enak dipakai — ditemani novel, game, dan sesekali olahraga.
           </p>
 
           <div class="hero__actions reveal" data-reveal style="--delay: 0.24s">
@@ -176,7 +247,7 @@
           <div class="hero__socials reveal" data-reveal style="--delay: 0.3s">
             <span class="hero__socials-label">Temukan saya di</span>
             <div class="socials">
-              <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub" class="social" title="GitHub">
+              <a href="https://github.com/arvandraeka07/" target="_blank" rel="noopener noreferrer" aria-label="GitHub Arvandra Eka Pratama" class="social" title="GitHub">
                 <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
                   <rect x="6" y="0" width="4" height="1" fill="currentColor"/>
                   <rect x="4" y="1" width="8" height="1" fill="currentColor"/>
@@ -189,14 +260,14 @@
                   <rect x="14" y="6" width="1" height="3" fill="currentColor"/>
                 </svg>
               </a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="social" title="Instagram">
+              <a href="https://www.instagram.com/andraaeka_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Arvandra Eka Pratama" class="social" title="Instagram">
                 <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
                   <rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"/>
                   <rect x="5" y="5" width="6" height="6" fill="none" stroke="currentColor" stroke-width="2"/>
                   <rect x="11" y="2" width="2" height="2" fill="currentColor"/>
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social" title="LinkedIn">
+              <a href="https://www.linkedin.com/in/arvandra-eka-pratama-8868b9420/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Arvandra Eka Pratama" class="social" title="LinkedIn">
                 <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
                   <rect x="1" y="1" width="5" height="5" fill="currentColor"/>
                   <rect x="1" y="8" width="5" height="7" fill="currentColor"/>
@@ -205,7 +276,7 @@
                   <rect x="12" y="12" width="3" height="3" fill="currentColor"/>
                 </svg>
               </a>
-              <a href="mailto:halo@arvandra.dev" aria-label="Email" class="social" title="Email">
+              <a href="mailto:arvandraeka05@gmail.com" aria-label="Kirim email ke Arvandra Eka Pratama" class="social" title="Email">
                 <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
                   <rect x="0" y="3" width="16" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
                   <rect x="1" y="5" width="3" height="3" fill="currentColor" transform="rotate(45 2.5 6.5)"/>
@@ -244,29 +315,89 @@
             <span class="profile__spot" aria-hidden="true"></span>
 
             <div class="profile__head">
-              <span class="mono">PLAYER / 2026</span>
+              <span class="mono">PLAYER / ARVANDRA</span>
               <span class="status"><span class="status__dot"></span> Available</span>
             </div>
 
-            <div class="mc-cube" aria-hidden="true">
-              <span class="mc-cube__face mc-cube__face--front">
-                <span class="mc-cube__portrait">
-                  <img src="image/foto-profil.jpeg" alt="" />
-                </span>
-              </span>
-              <span class="mc-cube__face mc-cube__face--top"></span>
-              <span class="mc-cube__face mc-cube__face--side"></span>
+            <div class="mc-stage" id="mcStage">
+              <span class="mc-stage__glow" aria-hidden="true"></span>
+              <span class="mc-stage__sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+
+              <div class="mc-world" aria-hidden="true">
+                <div class="mc-orbit">
+                  <span class="mc-orbit__slot" style="--a: 0deg; --y: -64px">
+                    <svg class="mc-orbit__item" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                      <rect x="5" y="2" width="6" height="2" fill="#C8FFF6"/><rect x="4" y="4" width="8" height="2" fill="#5AEDD9"/>
+                      <rect x="3" y="6" width="10" height="4" fill="#5AEDD9"/><rect x="4" y="10" width="8" height="2" fill="#2FB3A6"/>
+                      <rect x="6" y="12" width="4" height="2" fill="#1E8C82"/><rect x="5" y="5" width="2" height="2" fill="#FFFFFF"/>
+                    </svg>
+                  </span>
+                  <span class="mc-orbit__slot" style="--a: 90deg; --y: 46px">
+                    <svg class="mc-orbit__item" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                      <rect x="6" y="2" width="4" height="2" fill="#9CF7B8"/><rect x="4" y="4" width="8" height="2" fill="#17DD62"/>
+                      <rect x="3" y="6" width="10" height="4" fill="#17DD62"/><rect x="4" y="10" width="8" height="2" fill="#0E9E45"/>
+                      <rect x="6" y="12" width="4" height="2" fill="#0A6B30"/><rect x="5" y="5" width="2" height="2" fill="#D8FFE6"/>
+                    </svg>
+                  </span>
+                  <span class="mc-orbit__slot" style="--a: 180deg; --y: -30px">
+                    <svg class="mc-orbit__item" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                      <rect x="2" y="3" width="12" height="11" fill="#6B3A1E"/><rect x="3" y="3" width="10" height="10" fill="#B4442F"/>
+                      <rect x="4" y="4" width="8" height="8" fill="#E8D9B0"/><rect x="5" y="5" width="6" height="1" fill="#9C8A5A"/>
+                      <rect x="5" y="7" width="6" height="1" fill="#9C8A5A"/><rect x="5" y="9" width="4" height="1" fill="#9C8A5A"/>
+                    </svg>
+                  </span>
+                  <span class="mc-orbit__slot" style="--a: 270deg; --y: 58px">
+                    <svg class="mc-orbit__item" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                      <rect x="3" y="2" width="9" height="2" fill="#5AEDD9"/><rect x="2" y="4" width="3" height="2" fill="#5AEDD9"/>
+                      <rect x="11" y="4" width="3" height="2" fill="#2FB3A6"/><rect x="7" y="4" width="2" height="10" fill="#8B5A2B"/>
+                      <rect x="8" y="5" width="1" height="8" fill="#A97440"/><rect x="5" y="3" width="3" height="1" fill="#C8FFF6"/>
+                    </svg>
+                  </span>
+                </div>
+
+                <div class="mc-cube" id="mcCube">
+                  <span class="mc-cube__face mc-cube__face--front" data-label="AE">
+                    <span class="mc-cube__art"><img src="image/foto-profil.jpeg" alt="" width="617" height="823" /></span>
+                  </span>
+                  <span class="mc-cube__face mc-cube__face--right" data-label="NOVEL">
+                    <span class="mc-cube__art"><img src="image/hobi-novel.webp" data-night="image/hobi-novel.webp" data-day="image/hobi-novel-day.webp" alt="" width="800" height="800" /></span>
+                  </span>
+                  <span class="mc-cube__face mc-cube__face--left" data-label="LARI">
+                    <span class="mc-cube__art"><img src="image/hobi-olahraga.webp" data-night="image/hobi-olahraga.webp" data-day="image/hobi-olahraga-day.webp" alt="" width="800" height="800" /></span>
+                  </span>
+                  <span class="mc-cube__face mc-cube__face--back" data-label="GAME">
+                    <span class="mc-cube__art"><img src="image/hobi-game.webp" data-night="image/hobi-game.webp" data-day="image/hobi-game-day.webp" alt="" width="800" height="800" /></span>
+                  </span>
+                  <span class="mc-cube__face mc-cube__face--top"></span>
+                  <span class="mc-cube__face mc-cube__face--bottom"></span>
+                </div>
+              </div>
+              <span class="mc-stage__shadow" aria-hidden="true"></span>
+
+              <div class="mc-faces" id="mcFaces" role="group" aria-label="Putar kubus ke sisi tertentu">
+                <button type="button" class="mc-face-btn is-active" data-face="0" aria-label="Sisi foto" aria-pressed="true"><img src="image/foto-profil.jpeg" alt="" width="40" height="40" loading="lazy" /></button>
+                <button type="button" class="mc-face-btn" data-face="1" aria-label="Sisi baca novel" aria-pressed="false"><img src="image/hobi-novel.webp" data-night="image/hobi-novel.webp" data-day="image/hobi-novel-day.webp" alt="" width="40" height="40" loading="lazy" /></button>
+                <button type="button" class="mc-face-btn" data-face="2" aria-label="Sisi main game" aria-pressed="false"><img src="image/hobi-game.webp" data-night="image/hobi-game.webp" data-day="image/hobi-game-day.webp" alt="" width="40" height="40" loading="lazy" /></button>
+                <button type="button" class="mc-face-btn" data-face="3" aria-label="Sisi olahraga" aria-pressed="false"><img src="image/hobi-olahraga.webp" data-night="image/hobi-olahraga.webp" data-day="image/hobi-olahraga-day.webp" alt="" width="40" height="40" loading="lazy" /></button>
+              </div>
+              <div class="mc-tools" role="group" aria-label="Kontrol kubus">
+                <button type="button" class="tool-btn" id="cubeSpin" aria-pressed="true">⟳ Auto</button>
+                <button type="button" class="tool-btn" id="cubeBoom" aria-pressed="false">✸ Meledak</button>
+                <button type="button" class="tool-btn" id="cubeRand">⚄ Acak</button>
+              </div>
+              <span class="mc-stage__label" id="mcLabel" aria-live="polite"><b>Foto</b> · Andra IRL</span>
+              <span class="mc-stage__hint" aria-hidden="true">↻ seret kubus atau pilih slot</span>
             </div>
 
             <h2 class="profile__name">Arvandra Eka Pratama</h2>
-            <p class="profile__role">Web Developer · UI Enthusiast</p>
+            <p class="profile__role">Informatika · Front-End · DKV</p>
 
             <div class="profile__meta">
-              <div><strong>12+</strong><span>Project</span></div>
+              <div><strong>03</strong><span>Semester</span></div>
               <i aria-hidden="true"></i>
-              <div><strong>3+</strong><span>Tahun</span></div>
+              <div><strong>06</strong><span>Hobi</span></div>
               <i aria-hidden="true"></i>
-              <div><strong>∞</strong><span>Penasaran</span></div>
+              <div><strong>&infin;</strong><span>Penasaran</span></div>
             </div>
 
             <a href="#tentang" class="profile__cta">
@@ -302,12 +433,12 @@
           <div class="float-chip chip--bl" aria-hidden="true">
             <svg class="px-icon" viewBox="0 0 16 16" shape-rendering="crispEdges">
               <rect x="4" y="2" width="8" height="4" fill="#C87F4A"/>
-              <rect x="4" y="6" width="8" height="4" fill="#A8653A"/>
-              <rect x="3" y="10" width="4" height="2" fill="#E8E8E8"/>
-              <rect x="2" y="12" width="3" height="2" fill="#DCDCDC"/>
-              <rect x="6" y="3" width="3" height="1" fill="#E0A06A"/>
+              <rect x="2" y="3" width="2" height="2" fill="#E0A06A"/>
+              <rect x="4" y="6" width="8" height="7" fill="#E6E6E6"/>
+              <rect x="5" y="7" width="6" height="1" fill="#BEBEBE"/>
+              <rect x="5" y="9" width="4" height="1" fill="#BEBEBE"/>
             </svg>
-            Powered by kopi
+            Novel addict
           </div>
         </div>
       </div>
@@ -317,12 +448,11 @@
         <span>Scroll</span>
       </a>
     </section>
-
-    <!-- ===== Marquee ===== -->
+<!-- ===== Marquee ===== -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span>Web Development <i>✦</i> UI / UX Design <i>✦</i> JavaScript <i>✦</i> Creative Coding <i>✦</i> Responsive Layout <i>✦</i></span>
-        <span>Web Development <i>✦</i> UI / UX Design <i>✦</i> JavaScript <i>✦</i> Creative Coding <i>✦</i> Responsive Layout <i>✦</i></span>
+        <span>Front-End <i>✦</i> Desain Komunikasi Visual <i>✦</i> UI / UX <i>✦</i> Baca Novel <i>✦</i> Gaming <i>✦</i> Olahraga <i>✦</i></span>
+        <span>Front-End <i>✦</i> Desain Komunikasi Visual <i>✦</i> UI / UX <i>✦</i> Baca Novel <i>✦</i> Gaming <i>✦</i> Olahraga <i>✦</i></span>
       </div>
     </div>
 
@@ -336,7 +466,7 @@
             <span class="gradient-text">manusia di balik layar ini.</span>
           </h2>
           <p class="section-sub reveal" data-reveal style="--delay: 0.1s">
-            Sedikit cerita tentang siapa saya, apa yang saya kerjakan, dan hal-hal
+            Sedikit cerita tentang siapa saya, dari mana saya belajar, dan hal-hal
             kecil yang bikin saya betah di depan layar.
           </p>
         </div>
@@ -344,55 +474,64 @@
         <div class="about__grid">
           <div class="about__copy">
             <p class="about__lead reveal" data-reveal>
-              Nama saya <strong>Arvandra Eka Pratama</strong>. Saya tertarik pada dunia
-              web sejak penasaran bagaimana sebuah halaman bisa terlihat bagus dan
-              bekerja semulus itu.
+              Nama lengkap saya <strong>Arvandra Eka Pratama</strong>, tapi semua orang
+              memanggil saya <strong>Andra</strong>.
             </p>
             <p class="reveal" data-reveal style="--delay: 0.05s">
-              Sekarang saya menghabiskan waktu membangun antarmuka yang bersih,
-              responsif, dan menyenangkan digunakan. Bagi saya, website bukan cuma
-              soal tampilan — tapi tentang bagaimana orang merasa saat memakainya.
+              Latar belakang saya dari <strong>SMK jurusan Desain Komunikasi Visual</strong> —
+              di sana saya belajar warna, tipografi, komposisi, dan kenapa sebuah
+              tampilan terasa “pas” atau tidak. Sekarang saya lanjut kuliah
+              <strong>Informatika di ITBAAS Indonesia</strong>, saat ini semester 3.
             </p>
             <p class="reveal" data-reveal style="--delay: 0.1s">
-              Saya suka detail kecil: transisi yang pas, tipografi yang nyaman dibaca,
-              dan layout yang tetap rapi di layar sekecil apa pun. Di luar coding, saya
-              senang menonton anime, main game, dan mengoleksi potongan momen random
-              yang bikin hari jadi lebih ringan.
+              Kombinasi itu yang bikin saya nyaman di dua sisi: memikirkan tampilannya,
+              lalu menuliskannya jadi kode. Saya suka detail kecil — transisi yang pas,
+              jarak yang konsisten, dan layout yang tetap rapi di layar sekecil apa pun.
+            </p>
+            <p class="reveal" data-reveal style="--delay: 0.12s">
+              Di luar layar, saya menghabiskan waktu membaca novel, olahraga, dan main
+              game. Tiga hal itu yang biasanya mengisi ulang energi saya sebelum
+              balik lagi ngoprek project.
             </p>
 
             <div class="skills reveal" data-reveal style="--delay: 0.14s">
-              <div class="skill-bar" style="--value: 92%">
-                <div class="skill-bar__top"><span>HTML &amp; CSS</span><em>92%</em></div>
-                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
-              </div>
-              <div class="skill-bar" style="--value: 82%">
-                <div class="skill-bar__top"><span>JavaScript</span><em>82%</em></div>
-                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
-              </div>
-              <div class="skill-bar" style="--value: 74%">
-                <div class="skill-bar__top"><span>React</span><em>74%</em></div>
+              <div class="skill-bar" style="--value: 90%">
+                <div class="skill-bar__top"><span>Desain Visual (DKV)</span><em>90%</em></div>
                 <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
               </div>
               <div class="skill-bar" style="--value: 86%">
-                <div class="skill-bar__top"><span>UI / UX Design</span><em>86%</em></div>
+                <div class="skill-bar__top"><span>HTML & CSS</span><em>86%</em></div>
+                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
+              </div>
+              <div class="skill-bar" style="--value: 84%">
+                <div class="skill-bar__top"><span>UI / UX</span><em>84%</em></div>
+                <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
+              </div>
+              <div class="skill-bar" style="--value: 76%">
+                <div class="skill-bar__top"><span>JavaScript</span><em>76%</em></div>
                 <div class="skill-bar__track"><span class="skill-bar__fill"></span></div>
               </div>
             </div>
 
+            <h3 class="inventory__title reveal" data-reveal style="--delay: 0.16s">
+              <span class="mono">Inventory / Tools</span>
+            </h3>
             <div class="skill-chips reveal" data-reveal style="--delay: 0.18s">
               <span class="skill">Figma</span>
-              <span class="skill">Tailwind</span>
+              <span class="skill">Illustrator</span>
+              <span class="skill">Photoshop</span>
+              <span class="skill">HTML</span>
+              <span class="skill">CSS</span>
+              <span class="skill">JavaScript</span>
               <span class="skill">Git</span>
               <span class="skill">Responsive</span>
-              <span class="skill">Web Motion</span>
-              <span class="skill">Problem Solving</span>
             </div>
           </div>
 
           <aside class="about__side">
             <figure class="portrait reveal" data-reveal data-glow>
-              <img src="image/foto-profil.jpeg" alt="Foto Arvandra Eka Pratama" loading="lazy" />
-              <figcaption>Arvandra —IRL</figcaption>
+              <img src="image/foto-profil.jpeg" alt="Foto Arvandra Eka Pratama" width="617" height="823" loading="lazy" />
+              <figcaption>Arvandra — IRL</figcaption>
             </figure>
 
             <div class="info-card reveal" data-reveal data-glow>
@@ -400,9 +539,12 @@
               <span class="mono info-card__label">Profil singkat</span>
               <ul class="info-list">
                 <li><span>Nama</span><strong>Arvandra Eka Pratama</strong></li>
+                <li><span>Panggilan</span><strong>Andra</strong></li>
+                <li><span>Kuliah</span><strong>ITBAAS Indonesia</strong></li>
+                <li><span>Jurusan</span><strong>Informatika · Sem 3</strong></li>
+                <li><span>Latar SMK</span><strong>Desain Komunikasi Visual</strong></li>
+                <li><span>Fokus</span><strong>Front-End & UI/UX</strong></li>
                 <li><span>Lokasi</span><strong>Indonesia</strong></li>
-                <li><span>Fokus</span><strong>Front-End &amp; UI/UX</strong></li>
-                <li><span>Status</span><strong class="text-green">Open to work</strong></li>
               </ul>
             </div>
 
@@ -417,8 +559,8 @@
                     <rect x="7" y="12" width="2" height="2" fill="#6B4F2A"/>
                   </svg>
                 </span>
-                <span class="stat-card__num" data-count="12" data-suffix="+">0</span>
-                <span class="stat-card__label">Project selesai</span>
+                <span class="stat-card__num" data-count="6" data-suffix="+">0</span>
+                <span class="stat-card__label">Project latihan</span>
               </div>
               <div class="stat-card reveal" data-reveal data-glow style="--delay: 0.08s">
                 <span class="stat-card__icon" aria-hidden="true">
@@ -430,38 +572,143 @@
                     <rect x="6" y="12" width="4" height="2" fill="#1E8C82"/>
                   </svg>
                 </span>
-                <span class="stat-card__num" data-count="3" data-suffix="+">0</span>
-                <span class="stat-card__label">Tahun belajar</span>
+                <span class="stat-card__num" data-count="3" data-suffix="">0</span>
+                <span class="stat-card__label">Semester kuliah</span>
               </div>
             </div>
 
             <blockquote class="quote reveal" data-reveal style="--delay: 0.12s">
               <span aria-hidden="true">“</span>
-              Build it simple, make it feel special.
+              Desain yang baik terasa, kode yang baik tidak terasa.
             </blockquote>
           </aside>
         </div>
 
+        <!-- Quest log + crafting table -->
+        <div class="about__extra">
+          <div class="quest reveal" data-reveal data-glow>
+            <div class="quest__head">
+              <span class="mono">Quest Log</span>
+              <span class="quest__badge">3 aktif</span>
+            </div>
+            <ul class="quest__list">
+              <li class="quest__item">
+                <span class="quest__check" aria-hidden="true"></span>
+                <span class="quest__body">
+                  <span class="quest__name">Lulus SMK Desain Komunikasi Visual</span>
+                </span>
+                <span class="quest__tag quest__tag--done">selesai</span>
+              </li>
+              <li class="quest__item">
+                <span class="quest__check quest__check--active" aria-hidden="true"></span>
+                <span class="quest__body">
+                  <span class="quest__name">Kuliah Informatika di ITBAAS</span>
+                  <span class="quest__bar"><i style="--v: 62%"></i></span>
+                </span>
+                <span class="quest__tag">sem 3 / 8</span>
+              </li>
+              <li class="quest__item">
+                <span class="quest__check quest__check--active" aria-hidden="true"></span>
+                <span class="quest__body">
+                  <span class="quest__name">Belajar JavaScript & React</span>
+                  <span class="quest__bar"><i style="--v: 55%"></i></span>
+                </span>
+                <span class="quest__tag">progress</span>
+              </li>
+              <li class="quest__item">
+                <span class="quest__check quest__check--active" aria-hidden="true"></span>
+                <span class="quest__body">
+                  <span class="quest__name">Bangun portofolio ini dari nol</span>
+                  <span class="quest__bar"><i style="--v: 88%"></i></span>
+                </span>
+                <span class="quest__tag">hampir</span>
+              </li>
+              <li class="quest__item">
+                <span class="quest__check" aria-hidden="true"></span>
+                <span class="quest__body">
+                  <span class="quest__name">Baca 1–2 novel tiap bulan</span>
+                </span>
+                <span class="quest__tag quest__tag--repeat">harian</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="craft reveal" data-reveal data-glow>
+            <div class="craft__head">
+              <span class="mono">Crafting Table</span>
+              <span class="craft__hint">3&times;3</span>
+            </div>
+
+            <div class="craft__row">
+              <div class="craft__grid" aria-hidden="true">
+                <span class="craft__slot"><span class="craft__tile" style="--tile: #E3792F">H</span></span>
+                <span class="craft__slot"><span class="craft__tile" style="--tile: #2B5FD9">C</span></span>
+                <span class="craft__slot"></span>
+                <span class="craft__slot"><span class="craft__tile" style="--tile: #FED83D">J</span></span>
+                <span class="craft__slot"></span>
+                <span class="craft__slot"></span>
+                <span class="craft__slot"><span class="craft__tile" style="--tile: #17DD62">D</span></span>
+                <span class="craft__slot"></span>
+                <span class="craft__slot"></span>
+              </div>
+
+              <span class="craft__arrow" aria-hidden="true">
+                <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="8" height="2" fill="currentColor"/>
+                  <rect x="9" y="5" width="2" height="2" fill="currentColor"/>
+                  <rect x="11" y="7" width="2" height="2" fill="currentColor"/>
+                  <rect x="9" y="9" width="2" height="2" fill="currentColor"/>
+                </svg>
+              </span>
+
+              <div class="craft__out">
+                <span class="craft__slot craft__slot--out" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <rect x="1" y="2" width="14" height="12" fill="#C6C6C6"/>
+                    <rect x="2" y="3" width="12" height="3" fill="#5A8F3C"/>
+                    <rect x="3" y="7" width="6" height="2" fill="#8ACC6B"/>
+                    <rect x="3" y="10" width="9" height="1" fill="#7E7E7E"/>
+                    <rect x="3" y="12" width="5" height="1" fill="#7E7E7E"/>
+                  </svg>
+                </span>
+                <span class="craft__out-label">Website</span>
+              </div>
+            </div>
+
+            <p class="craft__desc">
+              Resep andalan saya: <strong>desain yang rapi</strong> +
+              <strong>kode yang bersih</strong> = halaman yang enak dipakai.
+            </p>
+          </div>
+        </div>
+
         <div class="timeline reveal" data-reveal>
           <div class="timeline__item">
-            <span class="timeline__year">2023</span>
+            <span class="timeline__year">2022</span>
             <div>
-              <h3>Mulai penasaran</h3>
-              <p>Baris HTML pertama, layout berantakan, dan rasa ingin tahu yang tidak berhenti.</p>
+              <h3>Masuk SMK DKV</h3>
+              <p>Belajar warna, tipografi, ilustrasi, dan layout — dasar visual yang saya pakai sampai sekarang.</p>
             </div>
           </div>
           <div class="timeline__item">
             <span class="timeline__year">2024</span>
             <div>
-              <h3>Serius di front-end</h3>
-              <p>Belajar JavaScript, React, dan mulai membangun project iseng untuk latihan.</p>
+              <h3>Kenal dunia kode</h3>
+              <p>Baris HTML & CSS pertama. Dari situ penasaran bagaimana desain bisa “hidup” di browser.</p>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__year">2025</span>
+            <div>
+              <h3>Kuliah Informatika</h3>
+              <p>Lanjut ke ITBAAS Indonesia, belajar logika pemrograman, struktur data, dan dasar pengembangan web.</p>
             </div>
           </div>
           <div class="timeline__item">
             <span class="timeline__year">2026</span>
             <div>
-              <h3>Freelance &amp; kolaborasi</h3>
-              <p>Membantu UMKM dan komunitas punya website yang rapi sekaligus enak dipakai.</p>
+              <h3>Semester 3 & portofolio</h3>
+              <p>Menggabungkan desain dan kode: membangun project latihan sekaligus portofolio ini.</p>
             </div>
           </div>
         </div>
@@ -486,96 +733,76 @@
 
         <div class="hobby-grid">
           <article class="hobby hobby--feature reveal" data-reveal data-glow>
-            <img src="unnamed.png" alt="Ilustrasi dua orang menatap laut" class="hobby__img" loading="lazy" />
+            <img
+              src="image/hobi-novel.webp" data-night="image/hobi-novel.webp" data-day="image/hobi-novel-day.webp" width="800" height="800"
+              alt="Ilustrasi pixel art seseorang membaca novel di bawah pohon"
+              class="hobby__img" data-zoom loading="lazy" tabindex="0" role="button"
+            />
             <div class="hobby__overlay">
-              <span class="hobby__tag">Watching</span>
-              <h3>Nonton Anime</h3>
-              <p>Cerita yang bagus bisa jadi bahan bakar ide desain yang tidak terduga.</p>
+              <span class="hobby__tag rar rar--legend"><i></i>Legendary · Favorit</span>
+              <h3>Baca Novel</h3>
+              <p>Cerita yang bagus bisa jadi bahan bakar ide — entah untuk tulisan, desain, atau cara bercerita di sebuah halaman web.</p>
             </div>
             <span class="hobby__num" aria-hidden="true">01</span>
           </article>
 
-          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.05s">
-            <span class="hobby__icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-                <rect x="1" y="2" width="14" height="10" fill="#2B2B2B"/>
-                <rect x="2" y="3" width="12" height="8" fill="#4F9BD8"/>
-                <rect x="3" y="4" width="4" height="1" fill="#BFE3FF"/>
-                <rect x="3" y="6" width="8" height="1" fill="#3A78B0"/>
-                <rect x="3" y="8" width="6" height="1" fill="#3A78B0"/>
-                <rect x="6" y="12" width="4" height="2" fill="#8B8B8B"/>
-                <rect x="4" y="14" width="8" height="1" fill="#6F6F6F"/>
-              </svg>
-            </span>
-            <h3>Ngoding</h3>
-            <p>Bikin project iseng, ngoprek layout, dan jatuh cinta pada error yang akhirnya solved.</p>
-            <div class="hobby__tags"><span>HTML</span><span>JS</span></div>
-          </article>
-
-          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.1s">
-            <span class="hobby__icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-                <rect x="4" y="2" width="8" height="3" fill="#E52521"/>
-                <rect x="3" y="4" width="10" height="4" fill="#F2534D"/>
-                <rect x="5" y="5" width="2" height="2" fill="#FFD9A0"/>
-                <rect x="9" y="5" width="2" height="2" fill="#FFD9A0"/>
-                <rect x="2" y="8" width="12" height="4" fill="#C87F4A"/>
-                <rect x="4" y="8" width="8" height="2" fill="#E0A06A"/>
-                <rect x="6" y="12" width="4" height="2" fill="#8B5A3C"/>
-              </svg>
-            </span>
-            <h3>Desain UI</h3>
-            <p>Menyusun warna, grid, dan tipografi sampai terasa “pas” di mata.</p>
-            <div class="hobby__tags"><span>Figma</span><span>Moodboard</span></div>
-          </article>
-
-          <article class="hobby hobby--photo reveal" data-reveal data-glow style="--delay: 0.12s">
-            <img src="image/boleh.png" alt="Momen random saat hujan" class="hobby__img" loading="lazy" />
+          <article class="hobby hobby--art reveal" data-reveal data-glow style="--delay: 0.05s">
+            <img src="image/hobi-game.webp" data-night="image/hobi-game.webp" data-day="image/hobi-game-day.webp" width="800" height="800" alt="Ilustrasi pixel art seseorang bermain game dengan headset di kamar malam hari" class="hobby__img" data-zoom loading="lazy" />
             <div class="hobby__overlay">
-              <span class="hobby__tag">Random moment</span>
-              <h3>Foto Momen Absurd</h3>
+              <span class="hobby__tag rar rar--epic"><i></i>Epic · Chill mode</span>
+              <h3>Main Game</h3>
+              <p>Refreshing otak, melatih strategi, dan kadang jadi inspirasi interaksi UI yang lebih seru.</p>
+              <div class="hobby__tags"><span>Chill</span><span>Story mode</span></div>
+            </div>
+            <span class="hobby__num" aria-hidden="true">02</span>
+          </article>
+
+          <article class="hobby hobby--art reveal" data-reveal data-glow style="--delay: 0.1s">
+            <img src="image/hobi-olahraga.webp" data-night="image/hobi-olahraga.webp" data-day="image/hobi-olahraga-day.webp" width="800" height="800" alt="Ilustrasi pixel art seseorang berlari di lintasan saat matahari terbit" class="hobby__img" data-zoom loading="lazy" />
+            <div class="hobby__overlay">
+              <span class="hobby__tag rar rar--rare"><i></i>Rare · Daily run</span>
+              <h3>Olahraga</h3>
+              <p>Cara paling jujur buat reset kepala. Setelah keringat, ide yang buntu jadi gampang.</p>
+              <div class="hobby__tags"><span>Workout</span><span>Cardio</span></div>
+            </div>
+            <span class="hobby__num" aria-hidden="true">03</span>
+          </article>
+
+          <article class="hobby hobby--art reveal" data-reveal data-glow style="--delay: 0.14s">
+            <img src="image/hobi-desain.webp" data-night="image/hobi-desain.webp" data-day="image/hobi-desain-day.webp" width="800" height="800" alt="Ilustrasi pixel art seseorang melukis di easel saat senja" class="hobby__img" data-zoom loading="lazy" />
+            <div class="hobby__overlay">
+              <span class="hobby__tag rar rar--epic"><i></i>Epic · Sejak SMK</span>
+              <h3>Desain Visual</h3>
+              <p>Ilmu dari SMK DKV yang masih saya pakai tiap hari: warna, grid, tipografi, dan komposisi.</p>
+              <div class="hobby__tags"><span>DKV</span><span>Figma</span></div>
+            </div>
+            <span class="hobby__num" aria-hidden="true">04</span>
+          </article>
+
+          <article class="hobby hobby--art reveal" data-reveal data-glow style="--delay: 0.18s">
+            <img src="image/hobi-ngoding.webp" data-night="image/hobi-ngoding.webp" data-day="image/hobi-ngoding-day.webp" width="800" height="800" alt="Ilustrasi pixel art seseorang ngoding dengan laptop di bawah langit malam" class="hobby__img" data-zoom loading="lazy" />
+            <div class="hobby__overlay">
+              <span class="hobby__tag rar rar--rare"><i></i>Rare · Side quest</span>
+              <h3>Ngoding</h3>
+              <p>Bikin project iseng, ngoprek layout, dan jatuh cinta pada error yang akhirnya solved.</p>
+              <div class="hobby__tags"><span>HTML</span><span>JS</span></div>
+            </div>
+            <span class="hobby__num" aria-hidden="true">05</span>
+          </article>
+
+          <article class="hobby hobby--photo reveal" data-reveal data-glow style="--delay: 0.22s">
+            <img src="image/hobi-momen.webp" width="748" height="460" alt="Momen random saat hujan" class="hobby__img" data-zoom loading="lazy" />
+            <div class="hobby__overlay">
+              <span class="hobby__tag rar rar--common"><i></i>Common · Random moment</span>
+              <h3>Foto Momen</h3>
               <p>Karena momen random itu yang paling sering bikin ketawa.</p>
             </div>
-          </article>
-
-          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.16s">
-            <span class="hobby__icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-                <rect x="2" y="5" width="12" height="7" fill="#2B2B2B"/>
-                <rect x="3" y="6" width="10" height="5" fill="#6E6E6E"/>
-                <rect x="4" y="7" width="3" height="3" fill="#2B2B2B"/>
-                <rect x="5" y="8" width="1" height="1" fill="#6E6E6E"/>
-                <rect x="10" y="7" width="1" height="1" fill="#E52521"/>
-                <rect x="11" y="8" width="1" height="1" fill="#E52521"/>
-                <rect x="11" y="7" width="1" height="1" fill="#E52521"/>
-                <rect x="10" y="8" width="1" height="1" fill="#E52521"/>
-              </svg>
-            </span>
-            <h3>Gaming</h3>
-            <p>Refreshing otak, melatih strategi, dan kadang jadi inspirasi interaksi UI.</p>
-            <div class="hobby__tags"><span>Chill</span><span>Story mode</span></div>
-          </article>
-
-          <article class="hobby reveal" data-reveal data-glow style="--delay: 0.2s">
-            <span class="hobby__icon" aria-hidden="true">
-              <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-                <rect x="7" y="2" width="1" height="8" fill="#E8E8E8"/>
-                <rect x="8" y="2" width="4" height="1" fill="#E8E8E8"/>
-                <rect x="11" y="3" width="1" height="3" fill="#E8E8E8"/>
-                <rect x="5" y="9" width="3" height="3" fill="#E8E8E8"/>
-                <rect x="4" y="10" width="1" height="1" fill="#E8E8E8"/>
-                <rect x="5" y="12" width="2" height="1" fill="#BEBEBE"/>
-              </svg>
-            </span>
-            <h3>Musik</h3>
-            <p>Playlist yang tepat bisa mengubah satu jam debugging jadi terasa cepat.</p>
-            <div class="hobby__tags"><span>Lo-fi</span><span>Indie</span></div>
+            <span class="hobby__num" aria-hidden="true">06</span>
           </article>
         </div>
       </div>
     </section>
-
-    <!-- ===== Portofolio ===== -->
+<!-- ===== Portofolio ===== -->
     <section class="section" id="portofolio">
       <div class="container">
         <div class="section-head section-head--row">
@@ -585,7 +812,14 @@
               Sedikit <span class="gradient-text">karya terpilih.</span>
             </h2>
           </div>
-          <a href="https://github.com/" target="_blank" rel="noopener" class="link-arrow reveal" data-reveal style="--delay: 0.1s">
+          <a
+            href="https://github.com/arvandraeka07?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link-arrow reveal"
+            data-reveal
+            style="--delay: 0.1s"
+          >
             Lihat semua project
             <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
               <rect x="9" y="3" width="2" height="2" fill="currentColor"/>
@@ -599,13 +833,19 @@
         <div class="work-filter reveal" data-reveal role="tablist" aria-label="Filter project">
           <button type="button" class="filter-chip is-active" data-filter="all" role="tab" aria-selected="true">Semua</button>
           <button type="button" class="filter-chip" data-filter="web" role="tab" aria-selected="false">Web</button>
-          <button type="button" class="filter-chip" data-filter="design" role="tab" aria-selected="false">UI / UX</button>
+          <button type="button" class="filter-chip" data-filter="design" role="tab" aria-selected="false">Desain</button>
           <button type="button" class="filter-chip" data-filter="lab" role="tab" aria-selected="false">Eksperimen</button>
         </div>
 
         <div class="work-grid" id="workGrid">
           <article class="work reveal" data-reveal data-category="web" data-glow>
-            <a href="#" class="work__link" aria-label="Lihat project Nexora Studio">
+            <a
+              href="https://github.com/arvandraeka07/Web-Pempek"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work__link"
+              aria-label="Lihat project Web Pempek di GitHub"
+            >
               <div class="work__thumb work__thumb--one">
                 <div class="mock">
                   <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url"></span></div>
@@ -618,12 +858,12 @@
                   </div>
                 </div>
                 <span class="work__num">01</span>
-                <span class="work__year">2026</span>
+                <span class="work__year">JS</span>
               </div>
               <div class="work__info">
                 <div>
-                  <h3>Nexora Studio</h3>
-                  <p>Landing page studio kreatif dengan animasi halus dan layout modern.</p>
+                  <h3>Web Pempek</h3>
+                  <p>Website bertema pempek yang dibuat dengan JavaScript sebagai latihan membangun halaman interaktif.</p>
                 </div>
                 <span class="work__go">
                   <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
@@ -634,12 +874,18 @@
                   </svg>
                 </span>
               </div>
-              <div class="work__tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+              <div class="work__tags"><span>JavaScript</span><span>Web</span></div>
             </a>
           </article>
 
           <article class="work reveal" data-reveal data-category="web" data-glow style="--delay: 0.06s">
-            <a href="#" class="work__link" aria-label="Lihat project TaskFlow">
+            <a
+              href="https://github.com/arvandraeka07/Dashboard-Catering"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work__link"
+              aria-label="Lihat project Dashboard Catering di GitHub"
+            >
               <div class="work__thumb work__thumb--two">
                 <div class="mock mock--app">
                   <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url"></span></div>
@@ -652,12 +898,12 @@
                   </div>
                 </div>
                 <span class="work__num">02</span>
-                <span class="work__year">2025</span>
+                <span class="work__year">JS</span>
               </div>
               <div class="work__info">
                 <div>
-                  <h3>TaskFlow</h3>
-                  <p>Aplikasi to-do minimalis dengan penyimpanan lokal dan drag feel.</p>
+                  <h3>Dashboard Catering</h3>
+                  <p>Dashboard bertema catering — latihan menyusun tampilan data dan komponen dengan JavaScript.</p>
                 </div>
                 <span class="work__go">
                   <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
@@ -668,21 +914,27 @@
                   </svg>
                 </span>
               </div>
-              <div class="work__tags"><span>React</span><span>Tailwind</span></div>
+              <div class="work__tags"><span>JavaScript</span><span>Dashboard</span></div>
             </a>
           </article>
 
-          <article class="work reveal" data-reveal data-category="lab" data-glow style="--delay: 0.12s">
-            <a href="#" class="work__link" aria-label="Lihat project OMDPL Gallery">
+          <article class="work reveal" data-reveal data-category="design" data-glow style="--delay: 0.12s">
+            <a
+              href="https://www.instagram.com/andraaeka_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work__link"
+              aria-label="Lihat karya visual Arvandra di Instagram"
+            >
               <div class="work__thumb work__thumb--img">
-                <img src="unnamed.png" alt="Tampilan project OMDPL Gallery" class="work__img" loading="lazy" />
+                <img src="image/ilustrasi.webp" width="1000" height="562" alt="Ilustrasi digital karya Arvandra" class="work__img" loading="lazy" />
                 <span class="work__num work__num--light">03</span>
-                <span class="work__year work__year--light">2025</span>
+                <span class="work__year work__year--light">DKV</span>
               </div>
               <div class="work__info">
                 <div>
-                  <h3>OMDPL Gallery</h3>
-                  <p>Galeri visual anime dengan filter kategori dan lightbox interaktif.</p>
+                  <h3>Ilustrasi & Visual</h3>
+                  <p>Eksperimen ilustrasi dan komposisi warna dari masa SMK DKV.</p>
                 </div>
                 <span class="work__go">
                   <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
@@ -693,21 +945,27 @@
                   </svg>
                 </span>
               </div>
-              <div class="work__tags"><span>JavaScript</span><span>CSS Grid</span><span>Lightbox</span></div>
+              <div class="work__tags"><span>Ilustrasi</span><span>Komposisi</span><span>Warna</span></div>
             </a>
           </article>
 
-          <article class="work reveal" data-reveal data-category="design" data-glow style="--delay: 0.18s">
-            <a href="#" class="work__link" aria-label="Lihat project Aurora UI Kit">
+          <article class="work reveal" data-reveal data-category="lab" data-glow style="--delay: 0.18s">
+            <a
+              href="https://github.com/arvandraeka07/Web-Porto"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work__link"
+              aria-label="Lihat project Web Porto di GitHub"
+            >
               <div class="work__thumb work__thumb--four">
                 <div class="mock mock--kit">
                   <div class="mock__bar"><i></i><i></i><i></i><span class="mock__url"></span></div>
                   <div class="mock__body">
                     <div class="mock__swatches">
-                      <span style="--c: #7C5CFF"></span>
-                      <span style="--c: #22D3EE"></span>
-                      <span style="--c: #FF7AB8"></span>
-                      <span style="--c: #3DDC97"></span>
+                      <span style="--c: #6BA347"></span>
+                      <span style="--c: #5AEDD9"></span>
+                      <span style="--c: #FED83D"></span>
+                      <span style="--c: #E3792F"></span>
                     </div>
                     <span class="mock__line mock__line--lg"></span>
                     <div class="mock__type">
@@ -718,12 +976,12 @@
                   </div>
                 </div>
                 <span class="work__num">04</span>
-                <span class="work__year">2026</span>
+                <span class="work__year">CSS</span>
               </div>
               <div class="work__info">
                 <div>
-                  <h3>Aurora UI Kit</h3>
-                  <p>Eksplorasi design system: palet warna, tipografi, dan komponen dasar.</p>
+                  <h3>Web Porto</h3>
+                  <p>Website belajar: tempat mencoba layout dan styling CSS sebelum portofolio ini dibuat.</p>
                 </div>
                 <span class="work__go">
                   <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
@@ -734,7 +992,7 @@
                   </svg>
                 </span>
               </div>
-              <div class="work__tags"><span>Figma</span><span>Design System</span></div>
+              <div class="work__tags"><span>CSS</span><span>Latihan</span></div>
             </a>
           </article>
         </div>
@@ -755,11 +1013,11 @@
             </h2>
             <p>
               Terbuka untuk project freelance, kolaborasi, atau sekadar ngobrol soal
-              desain dan teknologi. Saya biasanya membalas dalam 1–2 hari.
+              desain, kode, dan novel. Saya biasanya membalas dalam 1–2 hari.
             </p>
 
             <div class="contact__mail-row">
-              <a href="mailto:halo@arvandra.dev" class="contact__mail">
+              <a href="mailto:arvandraeka05@gmail.com" class="contact__mail">
                 <span class="contact__mail-icon">
                   <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
                     <rect x="0" y="3" width="16" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -768,13 +1026,13 @@
                     <rect x="3" y="10" width="10" height="2" fill="currentColor"/>
                   </svg>
                 </span>
-                halo@arvandra.dev
+                arvandraeka05@gmail.com
               </a>
               <button
                 type="button"
                 class="copy-btn"
                 id="copyEmail"
-                data-copy="halo@arvandra.dev"
+                data-copy="arvandraeka05@gmail.com"
                 aria-label="Salin alamat email"
                 title="Salin email"
               >
@@ -787,15 +1045,15 @@
             </div>
 
             <div class="contact__socials">
-              <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
+              <a href="https://github.com/arvandraeka07/" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://www.instagram.com/andraaeka_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.linkedin.com/in/arvandra-eka-pratama-8868b9420/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="mailto:arvandraeka05@gmail.com">Email</a>
             </div>
 
             <div class="contact__note">
               <span class="status__dot"></span>
-              Biasanya aktif Senin–Jumat, 09.00–18.00 WIB
+              Kuliah Senin–Jumat, tapi DM Instagram selalu saya cek.
             </div>
           </div>
 
@@ -836,6 +1094,7 @@
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
+    <div class="footer__strata" aria-hidden="true"></div>
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
@@ -845,7 +1104,7 @@
           </span>
           <div>
             <strong>Arvandra Eka Pratama</strong>
-            <span>Web Developer &amp; UI Enthusiast</span>
+            <span>Informatika · Front-End · DKV</span>
           </div>
         </div>
 
@@ -858,7 +1117,7 @@
         </nav>
 
         <div class="footer__socials">
-          <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+          <a href="https://github.com/arvandraeka07/" target="_blank" rel="noopener noreferrer" aria-label="GitHub Arvandra Eka Pratama">
             <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
               <rect x="6" y="0" width="4" height="1" fill="currentColor"/>
               <rect x="4" y="1" width="8" height="1" fill="currentColor"/>
@@ -869,14 +1128,14 @@
               <rect x="5" y="11" width="4" height="1" fill="currentColor"/>
             </svg>
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href="https://www.instagram.com/andraaeka_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Arvandra Eka Pratama">
             <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
               <rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"/>
               <rect x="5" y="5" width="6" height="6" fill="none" stroke="currentColor" stroke-width="2"/>
               <rect x="11" y="2" width="2" height="2" fill="currentColor"/>
             </svg>
           </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/arvandra-eka-pratama-8868b9420/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Arvandra Eka Pratama">
             <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
               <rect x="1" y="1" width="5" height="5" fill="currentColor"/>
               <rect x="1" y="8" width="5" height="7" fill="currentColor"/>
@@ -885,14 +1144,23 @@
               <rect x="12" y="12" width="3" height="3" fill="currentColor"/>
             </svg>
           </a>
+          <a href="mailto:arvandraeka05@gmail.com" aria-label="Email Arvandra Eka Pratama">
+            <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="0" y="3" width="16" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="1" y="5" width="3" height="3" fill="currentColor"/>
+              <rect x="12" y="5" width="3" height="3" fill="currentColor"/>
+              <rect x="3" y="10" width="10" height="2" fill="currentColor"/>
+            </svg>
+          </a>
         </div>
       </div>
 
       <div class="footer__bottom">
         <p>© <span id="year">2026</span> Arvandra Eka Pratama. Dibuat dengan rasa penasaran.</p>
-        <p class="footer__made">HTML · CSS · JavaScript</p>
+        <p class="footer__made">HTML · CSS · JavaScript <button type="button" class="footer__debug" id="debugToggle" title="Tampilkan info debug ala Minecraft">F3</button></p>
       </div>
     </div>
+    <div class="footer__ores" aria-hidden="true"></div>
   </footer>
 
   <!-- ===== Minecraft HUD ===== -->
@@ -905,6 +1173,7 @@
       <span class="hud__xp-fill" id="hudXp"></span>
       <span class="hud__level" id="hudLevel">1</span>
     </div>
+    <div class="hud__hotbar" id="hudHotbar" aria-hidden="true"></div>
   </div>
 
   <a href="#home" class="to-top" id="toTop" aria-label="Kembali ke atas">
@@ -916,6 +1185,10 @@
       <rect x="11" y="6" width="2" height="2" fill="currentColor"/>
     </svg>
   </a>
+
+  <pre class="debug" id="debug" aria-hidden="true"></pre>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true"><div class="lightbox__box"><button type="button" class="lightbox__x" id="lightboxX" aria-label="Tutup">✕</button><img id="lightboxImg" alt="" /><p id="lightboxCap"></p></div></div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
